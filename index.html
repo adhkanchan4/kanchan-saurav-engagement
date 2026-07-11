@@ -1,299 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kanchan and Saurav's engagement invitation" />
-  <title>Kanchan & Saurav | Engagement</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanchan & Saurav | Engagement Invitation</title>
+  <meta name="description" content="Engagement invitation for Kanchan and Saurav">
   <style>
     :root{
-      --ivory:#fffaf1;
-      --pearl:#f8efe1;
-      --champagne:#d6b37a;
-      --gold:#b88a46;
-      --ink:#5d4932;
-      --soft:#efe2cf;
+      --ivory:#fffaf2;
+      --cream:#f7ead7;
+      --pearl:#fffdf8;
+      --gold:#b88a45;
+      --gold-light:#ddc293;
+      --ink:#5a442d;
+      --border:#dbc39e;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
+      font-family:Georgia,"Times New Roman",serif;
       color:var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at 8% 8%, rgba(255,255,255,.95) 0 9px, transparent 10px),
-        radial-gradient(circle at 92% 14%, rgba(255,255,255,.95) 0 13px, transparent 14px),
-        radial-gradient(circle at 12% 88%, rgba(255,255,255,.92) 0 11px, transparent 12px),
-        radial-gradient(circle at 88% 84%, rgba(255,255,255,.95) 0 15px, transparent 16px),
-        linear-gradient(135deg,#fffdf8 0%,#f5e8d5 48%,#fffaf2 100%);
+        radial-gradient(circle at 5% 10%, rgba(255,255,255,.98) 0 13px, transparent 14px),
+        radial-gradient(circle at 11% 20%, rgba(255,255,255,.95) 0 7px, transparent 8px),
+        radial-gradient(circle at 94% 13%, rgba(255,255,255,.98) 0 15px, transparent 16px),
+        radial-gradient(circle at 87% 26%, rgba(255,255,255,.95) 0 9px, transparent 10px),
+        linear-gradient(135deg,#fffdf9 0%,#f2dfc4 48%,#fffaf2 100%);
       min-height:100vh;
     }
     body::before{
       content:"";
-      position:fixed; inset:0; pointer-events:none; opacity:.55;
+      position:fixed; inset:0; pointer-events:none; opacity:.8;
       background:
-        radial-gradient(circle at 4% 28%, rgba(255,255,255,.9) 0 5px, transparent 6px),
-        radial-gradient(circle at 96% 38%, rgba(255,255,255,.85) 0 7px, transparent 8px),
-        radial-gradient(circle at 7% 60%, rgba(255,255,255,.8) 0 8px, transparent 9px),
-        radial-gradient(circle at 94% 70%, rgba(255,255,255,.9) 0 6px, transparent 7px);
+        radial-gradient(circle at 6% 38%, rgba(255,255,255,.95) 0 10px, transparent 11px),
+        radial-gradient(circle at 93% 44%, rgba(255,255,255,.95) 0 11px, transparent 12px),
+        radial-gradient(circle at 7% 75%, rgba(255,255,255,.94) 0 14px, transparent 15px),
+        radial-gradient(circle at 92% 82%, rgba(255,255,255,.95) 0 12px, transparent 13px);
     }
-    .screen{
+    .hero{
       min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px 18px;
+      display:grid;
+      place-items:center;
+      padding:28px 16px;
       position:relative;
       overflow:hidden;
     }
     .hero-inner{width:min(760px,100%);text-align:center;position:relative;z-index:2}
     .monogram{
-      font-size:42px;
-      color:var(--gold);
-      letter-spacing:4px;
-      margin-bottom:10px;
+      color:var(--gold);font-size:44px;letter-spacing:5px;margin-bottom:8px;
     }
-    .eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:13px;margin:0 0 14px}
+    .eyebrow{
+      margin:0 0 14px;text-transform:uppercase;letter-spacing:3px;font-size:13px;
+    }
     h1{
-      margin:0 0 22px;
-      font-size:clamp(42px,7vw,76px);
-      font-weight:400;
-      color:var(--gold);
-      line-height:1.05;
+      margin:0;color:var(--gold);font-size:clamp(46px,8vw,80px);
+      font-weight:400;line-height:1.05;
     }
-    .envelope-wrap{
-      width:min(560px,92vw);
-      height:350px;
-      margin:22px auto 0;
-      position:relative;
-      perspective:1200px;
-      cursor:pointer;
-      user-select:none;
+    .date{font-size:18px;margin:12px 0 24px}
+    .envelope{
+      position:relative;width:min(560px,92vw);height:360px;
+      margin:18px auto 6px;perspective:1300px;cursor:pointer;user-select:none;
     }
-    .envelope-shadow{
-      position:absolute;left:8%;right:8%;bottom:16px;height:35px;
-      background:rgba(95,68,36,.18);filter:blur(18px);border-radius:50%;
+    .shadow{
+      position:absolute;left:8%;right:8%;bottom:16px;height:36px;
+      background:rgba(85,57,27,.18);filter:blur(19px);border-radius:50%;
     }
-    .envelope-back{
-      position:absolute;left:0;right:0;bottom:30px;height:270px;
-      border:1px solid rgba(184,138,70,.45);
-      background:linear-gradient(145deg,#fffdf9,#efe0ca);
-      border-radius:8px;
-      box-shadow:0 20px 45px rgba(112,81,43,.17);
+    .back{
+      position:absolute;left:0;right:0;bottom:34px;height:270px;
+      background:linear-gradient(145deg,#fffdf9,#e8d4b5);
+      border:1px solid rgba(184,138,69,.45);border-radius:10px;
+      box-shadow:0 25px 50px rgba(96,65,30,.18);
     }
-    .card-peek{
-      position:absolute;left:8%;right:8%;bottom:48px;height:250px;
-      background:linear-gradient(180deg,#fffefa,#f7ead7);
-      border:1px solid rgba(184,138,70,.45);
-      border-radius:5px;
-      display:flex;align-items:center;justify-content:center;
-      transition:transform 1s cubic-bezier(.2,.8,.2,1), opacity .6s;
-      z-index:2;
+    .letter{
+      position:absolute;left:7%;right:7%;bottom:50px;height:255px;
+      background:linear-gradient(180deg,#fffefa,#f6e8d3);
+      border:1px solid rgba(184,138,69,.5);border-radius:7px;
+      display:grid;place-items:center;z-index:2;
+      transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .6s;
     }
-    .card-peek span{font-size:34px;color:var(--gold);letter-spacing:2px}
+    .letter span{font-size:36px;color:var(--gold);letter-spacing:2px}
     .front-left,.front-right{
-      position:absolute;bottom:30px;width:50%;height:270px;z-index:4;
-      background:linear-gradient(145deg,#f8ebd8,#fffaf2);
-      border-bottom:1px solid rgba(184,138,70,.5);
+      position:absolute;bottom:34px;width:50%;height:270px;z-index:4;
+      background:linear-gradient(145deg,#f5e6d1,#fffaf2);
+      border-bottom:1px solid rgba(184,138,69,.45);
     }
     .front-left{left:0;clip-path:polygon(0 0,100% 52%,100% 100%,0 100%)}
     .front-right{right:0;clip-path:polygon(100% 0,0 52%,0 100%,100% 100%)}
     .flap{
-      position:absolute;left:0;right:0;top:50px;height:225px;z-index:5;
-      transform-origin:top center;
-      transform-style:preserve-3d;
+      position:absolute;left:0;right:0;top:52px;height:225px;z-index:5;
+      transform-origin:top center;transform-style:preserve-3d;
       transition:transform .9s cubic-bezier(.3,.1,.2,1);
       clip-path:polygon(0 0,100% 0,50% 100%);
-      background:linear-gradient(160deg,#fffdf8,#ead7bb);
-      border-top:1px solid rgba(184,138,70,.5);
+      background:linear-gradient(160deg,#fffdf8,#e7d0ae);
+      border-top:1px solid rgba(184,138,69,.5);
       filter:drop-shadow(0 8px 10px rgba(90,61,30,.12));
     }
     .seal{
-      position:absolute;left:50%;top:180px;transform:translate(-50%,-50%);
-      width:78px;height:78px;border-radius:50%;z-index:7;
-      display:grid;place-items:center;color:#fff7e8;font-size:22px;
-      background:radial-gradient(circle at 35% 30%,#edcf91,#b57b2f 55%,#8f5d21);
-      border:4px double #f8e5bd;
-      box-shadow:0 8px 20px rgba(74,48,20,.3);
-      transition:opacity .35s, transform .35s;
+      position:absolute;left:50%;top:184px;transform:translate(-50%,-50%);
+      width:82px;height:82px;border-radius:50%;z-index:7;
+      display:grid;place-items:center;color:#fff7e9;font-size:21px;
+      background:radial-gradient(circle at 35% 30%,#efd397,#b57b2f 55%,#89581d);
+      border:4px double #f8e5bd;box-shadow:0 8px 20px rgba(74,48,20,.3);
+      transition:opacity .35s,transform .35s;
     }
-    .tap{margin-top:10px;letter-spacing:2px;text-transform:uppercase;font-size:13px}
-    .open .flap{transform:rotateX(180deg);z-index:1}
-    .open .seal{opacity:0;transform:translate(-50%,-50%) scale(.65)}
-    .open .card-peek{transform:translateY(-205px);opacity:0}
-    .open .tap{opacity:0}
-    .sparkle{
-      position:absolute;width:8px;height:8px;border-radius:50%;
-      background:#fff;box-shadow:0 0 12px #fff8c8;
-      animation:float 3.5s ease-in-out infinite;
-    }
-    @keyframes float{50%{transform:translateY(-12px);opacity:.45}}
-    .invitation{
-      display:none;
-      min-height:100vh;
-      padding:60px 18px;
-      position:relative;
-    }
-    .invitation.visible{display:block;animation:fadeIn .9s ease both}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    .card{
-      width:min(920px,100%);
-      margin:0 auto;
+    .tap{margin:8px 0 0;text-transform:uppercase;letter-spacing:2px;font-size:13px}
+    .hero.open .flap{transform:rotateX(180deg);z-index:1}
+    .hero.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.65)}
+    .hero.open .letter{transform:translateY(-205px);opacity:0}
+    .main{display:none;padding:56px 16px 70px;position:relative}
+    .main.visible{display:block;animation:fade .85s ease both}
+    @keyframes fade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    .shell{
+      width:min(980px,100%);margin:0 auto;
       background:rgba(255,252,246,.94);
-      border:1px solid rgba(184,138,70,.55);
-      border-radius:22px;
-      box-shadow:0 30px 70px rgba(91,63,31,.18);
+      border:1px solid rgba(184,138,69,.5);
+      border-radius:28px;box-shadow:0 30px 75px rgba(91,63,31,.2);
       overflow:hidden;
     }
-    .rings{text-align:center;font-size:38px;padding-top:34px;color:var(--gold)}
-    .content{padding:28px clamp(20px,5vw,58px) 48px}
-    .photo{
-      width:min(520px,100%);
-      display:block;margin:14px auto 34px;
-      border-radius:180px 180px 18px 18px;
-      border:5px solid #fff;
-      outline:1px solid rgba(184,138,70,.55);
-      box-shadow:0 18px 35px rgba(84,55,25,.16);
+    .pearl-frame{
+      padding:24px;
+      background:
+        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top left/34px 34px repeat-x,
+        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) bottom left/34px 34px repeat-x,
+        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top left/34px 34px repeat-y,
+        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top right/34px 34px repeat-y;
     }
-    .invite-copy{text-align:center}
-    .invite-copy h2{
-      font-size:clamp(42px,7vw,70px);
-      margin:10px 0 18px;color:var(--gold);font-weight:400;
+    .inner{
+      border:1px solid var(--border);border-radius:22px;
+      background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(250,240,225,.94));
+      padding:34px clamp(18px,4vw,48px) 48px;
     }
-    .details{
-      display:grid;grid-template-columns:1fr;
-      gap:12px;
-      max-width:580px;margin:26px auto;
-      font-size:18px;
+    .invitation-image{
+      display:block;width:min(760px,100%);height:auto;margin:0 auto 30px;
+      border-radius:20px;border:1px solid var(--border);
+      box-shadow:0 20px 40px rgba(96,64,31,.18);
     }
-    .detail{padding:13px;border-top:1px solid var(--soft)}
+    .correct-details{
+      max-width:700px;margin:0 auto 30px;text-align:center;
+      border-top:1px solid #ead9bf;border-bottom:1px solid #ead9bf;
+      padding:22px 14px;font-size:18px;line-height:1.7;
+    }
+    .correct-details strong{color:var(--gold)}
     .button{
-      display:inline-block;border:none;border-radius:999px;padding:16px 28px;
-      background:linear-gradient(180deg,#ead6ae,#c99e5d);
+      display:inline-block;border:none;border-radius:999px;padding:16px 30px;
+      background:linear-gradient(180deg,#ebd8b3,#c99e5d);
       color:#fffaf0;font-family:inherit;font-size:17px;letter-spacing:1px;
-      cursor:pointer;text-decoration:none;box-shadow:0 8px 18px rgba(127,87,39,.2);
+      cursor:pointer;text-decoration:none;box-shadow:0 9px 20px rgba(127,87,39,.2);
     }
+    .center{text-align:center}
     .rsvp{
-      margin-top:44px;padding-top:34px;border-top:1px solid var(--soft)
+      margin-top:46px;padding-top:36px;border-top:1px solid #ead9bf;
     }
-    .rsvp h3{text-align:center;font-size:34px;color:var(--gold);font-weight:400;margin:0 0 6px}
-    .rsvp-sub{text-align:center;margin:0 0 24px}
-    form{max-width:620px;margin:0 auto;display:grid;gap:16px}
+    .rsvp h2{
+      text-align:center;color:var(--gold);font-size:38px;font-weight:400;margin:0 0 8px;
+    }
+    .rsvp p{text-align:center}
+    form{max-width:650px;margin:24px auto 0;display:grid;gap:16px}
     label{font-size:15px}
     input,select,textarea{
       width:100%;margin-top:7px;padding:14px 15px;border-radius:12px;
-      border:1px solid #d8bea0;background:#fffdf9;color:var(--ink);
-      font:inherit;
+      border:1px solid #d8bea0;background:#fffdf9;color:var(--ink);font:inherit;
     }
     textarea{min-height:110px;resize:vertical}
-    .note{
-      max-width:650px;margin:38px auto 0;padding:24px;text-align:center;
-      background:#fbf2e5;border-radius:16px;border:1px solid #ead5ba;
-      line-height:1.6;
+    .status{display:none;margin:20px auto 0;max-width:650px;text-align:center;padding:18px;border-radius:14px}
+    .status.ok{display:block;background:#edf7ec;border:1px solid #bbd9b7}
+    .status.err{display:block;background:#fff0ec;border:1px solid #e2b6aa}
+    .gift-note{
+      max-width:700px;margin:40px auto 0;padding:24px;text-align:center;line-height:1.65;
+      border-radius:17px;background:#fbf2e5;border:1px solid #ead5ba;
     }
-    .thankyou{
-      display:none;text-align:center;padding:30px 10px 5px;
-      color:var(--gold);font-size:26px;
+    footer{text-align:center;padding:26px;color:#80694e;font-size:13px}
+
+    .couple-photo-wrap{
+      width:min(760px,100%);
+      margin:0 auto 34px;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(247,234,215,.92));
+      box-shadow:0 18px 38px rgba(96,64,31,.14);
+      position:relative;
     }
-    footer{text-align:center;padding:28px;color:#80694e;font-size:13px}
-    @media (max-width:600px){
-      .envelope-wrap{height:300px}
-      .envelope-back,.front-left,.front-right{height:220px}
-      .flap{height:180px;top:48px}
-      .seal{top:155px;width:68px;height:68px}
-      .card-peek{height:205px}
-      .open .card-peek{transform:translateY(-155px);opacity:0}
-      .photo{border-radius:130px 130px 14px 14px}
+    .couple-photo-wrap::before,
+    .couple-photo-wrap::after{
+      content:"";
+      position:absolute;
+      width:74px;height:74px;border-radius:50%;
+      background:
+        radial-gradient(circle at 32% 30%,#fff 0 20%,#eee2d1 48%,#fff 70%);
+      box-shadow:
+        26px 8px 0 -8px #fff,
+        48px 18px 0 -14px #fff,
+        10px 42px 0 -12px #fff;
+      opacity:.95;
+      z-index:2;
+    }
+    .couple-photo-wrap::before{left:-12px;top:-12px}
+    .couple-photo-wrap::after{right:-12px;bottom:-12px}
+    .couple-photo{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height:720px;
+      object-fit:cover;
+      object-position:center;
+      border-radius:180px 180px 16px 16px;
+      border:4px solid #fffdf8;
+      outline:1px solid var(--gold-light);
+    }
+    .photo-caption{
+      text-align:center;
+      margin:16px 0 0;
+      color:var(--gold);
+      font-size:22px;
+      letter-spacing:1px;
+    }
+
+    @media(max-width:600px){
+      .envelope{height:310px}
+      .back,.front-left,.front-right{height:220px}
+      .flap{height:180px;top:50px}
+      .seal{top:157px;width:68px;height:68px}
+      .letter{height:205px}
+      .hero.open .letter{transform:translateY(-155px);opacity:0}
+      .pearl-frame{padding:16px}
+      .inner{padding:24px 14px 36px}
     }
   </style>
 </head>
 <body>
-  <section class="screen" id="opening">
-    <span class="sparkle" style="left:12%;top:18%"></span>
-    <span class="sparkle" style="right:16%;top:26%;animation-delay:.8s"></span>
-    <span class="sparkle" style="left:22%;bottom:19%;animation-delay:1.5s"></span>
-    <span class="sparkle" style="right:12%;bottom:12%;animation-delay:2.1s"></span>
-
+  <section class="hero" id="opening">
     <div class="hero-inner">
       <div class="monogram">K &amp; S</div>
       <p class="eyebrow">You are invited</p>
       <h1>Kanchan &amp; Saurav</h1>
+      <p class="date">November 20, 2026</p>
 
-      <div class="envelope-wrap" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
-        <div class="envelope-shadow"></div>
-        <div class="envelope-back"></div>
-        <div class="card-peek"><span>K &amp; S</span></div>
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
+        <div class="shadow"></div>
+        <div class="back"></div>
+        <div class="letter"><span>K &amp; S</span></div>
         <div class="front-left"></div>
         <div class="front-right"></div>
         <div class="flap"></div>
         <div class="seal">K&amp;S</div>
       </div>
-      <p class="tap" id="tapText">Tap the envelope to open</p>
+      <p class="tap">Tap the envelope to open</p>
     </div>
   </section>
 
-  <main class="invitation" id="invitation">
-    <article class="card">
-      <div class="rings">💍 ♡ 💍</div>
-      <div class="content">
-        <div class="invite-copy">
-          <p class="eyebrow">Together with our families</p>
-          <p>We joyfully invite you to celebrate the engagement of</p>
-          <h2>Kanchan &amp; Saurav</h2>
+  <main class="main" id="main">
+    <article class="shell">
+      <div class="pearl-frame">
+        <div class="inner">
+          <img class="invitation-image" src="invitation.png" alt="Pearl engagement invitation for Kanchan and Saurav">
 
-          <img class="photo" src="engagement-photo.jpeg" alt="Kanchan and Saurav together" />
-
-          <div class="details">
-            <div class="detail"><strong>Friday, November 20, 2026</strong></div>
-            <div class="detail">From 4:00 PM onwards</div>
-            <div class="detail">20670 Fernbank Ct<br>Sterling, VA 20165, USA</div>
-            <div class="detail"><strong>Dress code:</strong> Traditional attire</div>
+          <div class="couple-photo-wrap">
+            <img class="couple-photo" src="engagement-photo.jpeg" alt="Kanchan and Saurav together">
+            <div class="photo-caption">Kanchan &amp; Saurav</div>
           </div>
 
-          <a class="button" href="#rsvp">Celebrate With Us</a>
-        </div>
-
-        <section class="rsvp" id="rsvp">
-          <h3>Kindly RSVP</h3>
-          <p class="rsvp-sub">Please reply by November 1, 2026.</p>
-
-          <form name="engagement-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvpForm">
-            <input type="hidden" name="form-name" value="engagement-rsvp" />
-            <p hidden>
-              <label>Do not fill this out: <input name="bot-field" /></label>
-            </p>
-
-            <label>
-              Full name
-              <input type="text" name="full-name" required />
-            </label>
-
-            <label>
-              Will you be attending?
-              <select name="attendance" required>
-                <option value="">Please select</option>
-                <option value="Joyfully accepts">Joyfully accepts</option>
-                <option value="Regretfully declines">Regretfully declines</option>
-              </select>
-            </label>
-
-            <label>
-              Message for Kanchan &amp; Saurav (optional)
-              <textarea name="message"></textarea>
-            </label>
-
-            <button class="button" type="submit">Submit RSVP</button>
-          </form>
-
-          <div class="thankyou" id="thankyou" aria-live="polite">
-            Thank you! Your RSVP has been received. ♡
+          <div class="correct-details">
+            <div><strong>Friday, November 20, 2026</strong></div>
+            <div><strong>From 4:00 PM onwards</strong></div>
+            <div>20670 Fernbank Ct, Sterling, VA 20165, USA</div>
+            <div>Traditional attire</div>
           </div>
-        </section>
 
-        <div class="note">
-          <strong>Your presence is the greatest gift we could ask for.</strong><br>
-          Should you wish to bless us with a gift, a contribution toward our future together would be sincerely appreciated.
-          <br><em>No boxed gifts, please.</em>
+          <div class="center">
+            <a class="button" href="#rsvp">Celebrate With Us</a>
+          </div>
+
+          <section class="rsvp" id="rsvp">
+            <h2>Kindly RSVP</h2>
+            <p>Please respond by November 1, 2026. No plus-ones.</p>
+
+            <form id="rsvpForm">
+              <label>
+                Full name
+                <input type="text" name="fullName" required>
+              </label>
+
+              <label>
+                Will you be attending?
+                <select name="attendance" required>
+                  <option value="">Please select</option>
+                  <option value="Accepted">Joyfully accepts</option>
+                  <option value="Declined">Regretfully declines</option>
+                </select>
+              </label>
+
+              <label>
+                Message for Kanchan &amp; Saurav (optional)
+                <textarea name="message"></textarea>
+              </label>
+
+              <button class="button" type="submit">Submit RSVP</button>
+            </form>
+
+            <div class="status" id="status" aria-live="polite"></div>
+          </section>
+
+          <div class="gift-note">
+            <strong>Your presence is the greatest gift we could ask for.</strong><br>
+            Should you wish to bless us with a gift, a contribution toward our future together would be sincerely appreciated.
+            <br><em>No boxed gifts, please.</em>
+          </div>
         </div>
       </div>
     </article>
@@ -301,42 +314,69 @@
   </main>
 
   <script>
-    const envelope = document.getElementById('envelope');
-    const opening = document.getElementById('opening');
-    const invitation = document.getElementById('invitation');
-    const form = document.getElementById('rsvpForm');
-    const thankyou = document.getElementById('thankyou');
+    // Paste your deployed Google Apps Script Web App URL here.
+    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+    const opening = document.getElementById("opening");
+    const envelope = document.getElementById("envelope");
+    const main = document.getElementById("main");
+    const form = document.getElementById("rsvpForm");
+    const statusBox = document.getElementById("status");
 
     function openInvitation(){
-      if (opening.classList.contains('open')) return;
-      opening.classList.add('open');
-      setTimeout(() => {
-        invitation.classList.add('visible');
-        invitation.scrollIntoView({behavior:'smooth'});
-      }, 1000);
+      if(opening.classList.contains("open")) return;
+      opening.classList.add("open");
+      setTimeout(()=>{
+        main.classList.add("visible");
+        main.scrollIntoView({behavior:"smooth"});
+      },950);
     }
 
-    envelope.addEventListener('click', openInvitation);
-    envelope.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+    envelope.addEventListener("click",openInvitation);
+    envelope.addEventListener("keydown",(event)=>{
+      if(event.key==="Enter" || event.key===" "){
+        event.preventDefault();
         openInvitation();
       }
     });
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
+    form.addEventListener("submit", async (event)=>{
+      event.preventDefault();
+
+      if(GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")){
+        statusBox.className = "status err";
+        statusBox.textContent = "RSVP connection is not finished yet. Add the Google Apps Script URL first.";
+        return;
+      }
+
+      const button = form.querySelector("button");
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      const formData = new FormData(form);
+      const payload = {
+        fullName: formData.get("fullName"),
+        attendance: formData.get("attendance"),
+        message: formData.get("message") || ""
+      };
+
       try{
-        await fetch('/', {
-          method:'POST',
-          headers:{'Content-Type':'application/x-www-form-urlencoded'},
-          body:new URLSearchParams(data).toString()
+        await fetch(GOOGLE_SCRIPT_URL,{
+          method:"POST",
+          mode:"no-cors",
+          headers:{"Content-Type":"text/plain;charset=utf-8"},
+          body:JSON.stringify(payload)
         });
-        form.style.display='none';
-        thankyou.style.display='block';
-      }catch(err){
-        form.submit();
+
+        form.reset();
+        statusBox.className = "status ok";
+        statusBox.textContent = "Thank you! Your RSVP has been received.";
+      }catch(error){
+        statusBox.className = "status err";
+        statusBox.textContent = "Something went wrong. Please try again.";
+      }finally{
+        button.disabled = false;
+        button.textContent = "Submit RSVP";
       }
     });
   </script>

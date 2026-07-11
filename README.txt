@@ -1,8 +1,23 @@
-Kanchan & Saurav Engagement Website
+Kanchan & Saurav Pearl Engagement Website
 
-Files:
+Website files:
 - index.html
-- engagement-photo.jpeg
+- invitation.png
 
-This site is ready for Netlify. The RSVP form uses Netlify Forms.
-After deployment, RSVP responses will appear in Netlify under Forms.
+Google RSVP setup:
+- google-apps-script.gs
+- SETUP-GOOGLE-SHEETS.txt
+
+The website includes:
+- Click-to-open envelope
+- Pearl and ivory aesthetic
+- Approved invitation image
+- Your engagement photo
+- Correct event details shown below the invitation
+- RSVP form
+- Google Sheet tracking
+- Email notifications
+- Guest List statuses: Accepted, Declined, Pending
+
+Additional file:
+- engagement-photo.jpeg
