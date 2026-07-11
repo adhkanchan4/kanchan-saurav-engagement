@@ -8,12 +8,11 @@
   <style>
     :root{
       --ivory:#fffaf2;
-      --cream:#f7ead7;
-      --pearl:#fffdf8;
-      --gold:#b88a45;
-      --gold-light:#ddc293;
-      --ink:#5a442d;
-      --border:#dbc39e;
+      --cream:#f5e6d2;
+      --gold:#b78943;
+      --gold-soft:#d8bd8e;
+      --ink:#5d4730;
+      --line:#dfc7a0;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -22,317 +21,292 @@
       font-family:Georgia,"Times New Roman",serif;
       color:var(--ink);
       background:
-        radial-gradient(circle at 5% 10%, rgba(255,255,255,.98) 0 13px, transparent 14px),
-        radial-gradient(circle at 11% 20%, rgba(255,255,255,.95) 0 7px, transparent 8px),
-        radial-gradient(circle at 94% 13%, rgba(255,255,255,.98) 0 15px, transparent 16px),
-        radial-gradient(circle at 87% 26%, rgba(255,255,255,.95) 0 9px, transparent 10px),
-        linear-gradient(135deg,#fffdf9 0%,#f2dfc4 48%,#fffaf2 100%);
+        linear-gradient(120deg,rgba(255,255,255,.75),transparent 34%),
+        linear-gradient(300deg,rgba(255,255,255,.64),transparent 38%),
+        linear-gradient(135deg,#fffdf9 0%,#f2e2ca 50%,#fff9ef 100%);
       min-height:100vh;
     }
-    body::before{
-      content:"";
-      position:fixed; inset:0; pointer-events:none; opacity:.8;
-      background:
-        radial-gradient(circle at 6% 38%, rgba(255,255,255,.95) 0 10px, transparent 11px),
-        radial-gradient(circle at 93% 44%, rgba(255,255,255,.95) 0 11px, transparent 12px),
-        radial-gradient(circle at 7% 75%, rgba(255,255,255,.94) 0 14px, transparent 15px),
-        radial-gradient(circle at 92% 82%, rgba(255,255,255,.95) 0 12px, transparent 13px);
-    }
+
+    .page{width:min(980px,100%);margin:0 auto;padding:22px 14px 70px}
+
     .hero{
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding:28px 16px;
       position:relative;
-      overflow:hidden;
     }
-    .hero-inner{width:min(760px,100%);text-align:center;position:relative;z-index:2}
-    .monogram{
-      color:var(--gold);font-size:44px;letter-spacing:5px;margin-bottom:8px;
+    .hero-inner{width:min(760px,100%);text-align:center}
+    .monogram{color:var(--gold);font-size:46px;letter-spacing:5px;margin-bottom:8px}
+    .eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:13px;margin:0 0 12px}
+    .hero h1{
+      margin:0;color:var(--gold);font-size:clamp(48px,8vw,82px);
+      font-weight:400;line-height:1.05
     }
-    .eyebrow{
-      margin:0 0 14px;text-transform:uppercase;letter-spacing:3px;font-size:13px;
-    }
-    h1{
-      margin:0;color:var(--gold);font-size:clamp(46px,8vw,80px);
-      font-weight:400;line-height:1.05;
-    }
-    .date{font-size:18px;margin:12px 0 24px}
+    .date-top{font-size:18px;margin:12px 0 24px}
+
     .envelope{
-      position:relative;width:min(560px,92vw);height:360px;
-      margin:18px auto 6px;perspective:1300px;cursor:pointer;user-select:none;
+      position:relative;width:min(580px,93vw);height:380px;margin:18px auto 0;
+      perspective:1400px;cursor:pointer;user-select:none;
     }
-    .shadow{
-      position:absolute;left:8%;right:8%;bottom:16px;height:36px;
-      background:rgba(85,57,27,.18);filter:blur(19px);border-radius:50%;
+    .env-shadow{
+      position:absolute;left:8%;right:8%;bottom:18px;height:38px;border-radius:50%;
+      background:rgba(78,51,22,.18);filter:blur(18px);
     }
-    .back{
-      position:absolute;left:0;right:0;bottom:34px;height:270px;
-      background:linear-gradient(145deg,#fffdf9,#e8d4b5);
-      border:1px solid rgba(184,138,69,.45);border-radius:10px;
-      box-shadow:0 25px 50px rgba(96,65,30,.18);
+    .env-back{
+      position:absolute;left:0;right:0;bottom:36px;height:286px;
+      border:1px solid rgba(184,137,67,.46);border-radius:12px;
+      background:linear-gradient(145deg,#fffdf9,#e7d1ad);
+      box-shadow:0 26px 52px rgba(91,62,30,.17);
     }
-    .letter{
-      position:absolute;left:7%;right:7%;bottom:50px;height:255px;
-      background:linear-gradient(180deg,#fffefa,#f6e8d3);
-      border:1px solid rgba(184,138,69,.5);border-radius:7px;
-      display:grid;place-items:center;z-index:2;
-      transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .6s;
+    .env-card{
+      position:absolute;left:7%;right:7%;bottom:56px;height:266px;z-index:2;
+      display:grid;place-items:center;border:1px solid rgba(184,137,67,.46);
+      border-radius:8px;background:linear-gradient(180deg,#fffefa,#f4e3ca);
+      transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .55s;
     }
-    .letter span{font-size:36px;color:var(--gold);letter-spacing:2px}
+    .env-card span{color:var(--gold);font-size:38px;letter-spacing:2px}
     .front-left,.front-right{
-      position:absolute;bottom:34px;width:50%;height:270px;z-index:4;
-      background:linear-gradient(145deg,#f5e6d1,#fffaf2);
-      border-bottom:1px solid rgba(184,138,69,.45);
+      position:absolute;bottom:36px;width:50%;height:286px;z-index:4;
+      background:linear-gradient(145deg,#f5e5cf,#fffaf2);
     }
     .front-left{left:0;clip-path:polygon(0 0,100% 52%,100% 100%,0 100%)}
     .front-right{right:0;clip-path:polygon(100% 0,0 52%,0 100%,100% 100%)}
     .flap{
-      position:absolute;left:0;right:0;top:52px;height:225px;z-index:5;
+      position:absolute;left:0;right:0;top:52px;height:238px;z-index:5;
       transform-origin:top center;transform-style:preserve-3d;
       transition:transform .9s cubic-bezier(.3,.1,.2,1);
       clip-path:polygon(0 0,100% 0,50% 100%);
-      background:linear-gradient(160deg,#fffdf8,#e7d0ae);
-      border-top:1px solid rgba(184,138,69,.5);
-      filter:drop-shadow(0 8px 10px rgba(90,61,30,.12));
+      background:linear-gradient(160deg,#fffdf8,#e5cca4);
+      border-top:1px solid rgba(184,137,67,.48);
+      filter:drop-shadow(0 8px 10px rgba(90,61,30,.11));
     }
     .seal{
-      position:absolute;left:50%;top:184px;transform:translate(-50%,-50%);
-      width:82px;height:82px;border-radius:50%;z-index:7;
+      position:absolute;left:50%;top:190px;transform:translate(-50%,-50%);
+      width:86px;height:86px;border-radius:50%;z-index:7;
       display:grid;place-items:center;color:#fff7e9;font-size:21px;
       background:radial-gradient(circle at 35% 30%,#efd397,#b57b2f 55%,#89581d);
-      border:4px double #f8e5bd;box-shadow:0 8px 20px rgba(74,48,20,.3);
+      border:4px double #f8e5bd;box-shadow:0 8px 20px rgba(74,48,20,.27);
       transition:opacity .35s,transform .35s;
     }
     .tap{margin:8px 0 0;text-transform:uppercase;letter-spacing:2px;font-size:13px}
     .hero.open .flap{transform:rotateX(180deg);z-index:1}
     .hero.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.65)}
-    .hero.open .letter{transform:translateY(-205px);opacity:0}
-    .main{display:none;padding:56px 16px 70px;position:relative}
-    .main.visible{display:block;animation:fade .85s ease both}
-    @keyframes fade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    .hero.open .env-card{transform:translateY(-215px);opacity:0}
+
+    .content{display:none;animation:fade .85s ease both}
+    .content.visible{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
     .shell{
-      width:min(980px,100%);margin:0 auto;
-      background:rgba(255,252,246,.94);
-      border:1px solid rgba(184,138,69,.5);
-      border-radius:28px;box-shadow:0 30px 75px rgba(91,63,31,.2);
-      overflow:hidden;
-    }
-    .pearl-frame{
-      padding:24px;
-      background:
-        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top left/34px 34px repeat-x,
-        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) bottom left/34px 34px repeat-x,
-        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top left/34px 34px repeat-y,
-        radial-gradient(circle,#fff 0 8px,#e8dccb 9px 10px,transparent 11px) top right/34px 34px repeat-y;
-    }
-    .inner{
-      border:1px solid var(--border);border-radius:22px;
-      background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(250,240,225,.94));
-      padding:34px clamp(18px,4vw,48px) 48px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:rgba(255,253,248,.98);
+      box-shadow:0 30px 75px rgba(91,63,31,.18);
+      padding:28px;
     }
     .invitation-image{
-      display:block;width:min(760px,100%);height:auto;margin:0 auto 30px;
-      border-radius:20px;border:1px solid var(--border);
-      box-shadow:0 20px 40px rgba(96,64,31,.18);
+      display:block;
+      width:min(760px,100%);
+      margin:0 auto;
+      border-radius:24px;
+      border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(96,64,31,.16);
     }
-    .correct-details{
-      max-width:700px;margin:0 auto 30px;text-align:center;
-      border-top:1px solid #ead9bf;border-bottom:1px solid #ead9bf;
-      padding:22px 14px;font-size:18px;line-height:1.7;
+
+    .corrected-details{
+      max-width:740px;
+      margin:30px auto 0;
+      padding:24px 18px;
+      border-top:1px solid #ead9bf;
+      border-bottom:1px solid #ead9bf;
+      text-align:center;
+      font-size:18px;
+      line-height:1.7;
     }
-    .correct-details strong{color:var(--gold)}
+    .corrected-details strong{color:var(--gold)}
+
+    .photo-card{
+      width:min(680px,100%);
+      margin:38px auto 0;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:#fffdf9;
+      box-shadow:0 18px 38px rgba(96,64,31,.14);
+    }
+    .photo{
+      display:block;
+      width:100%;
+      max-height:760px;
+      object-fit:cover;
+      object-position:center;
+      border-radius:180px 180px 18px 18px;
+      border:4px solid #fffdf8;
+      outline:1px solid var(--gold-soft);
+    }
+    .caption{
+      text-align:center;
+      margin:15px 0 2px;
+      color:var(--gold);
+      font-size:23px;
+    }
+
+    .center{text-align:center;margin-top:32px}
     .button{
-      display:inline-block;border:none;border-radius:999px;padding:16px 30px;
-      background:linear-gradient(180deg,#ebd8b3,#c99e5d);
+      display:inline-block;border:none;border-radius:999px;padding:16px 32px;
+      background:linear-gradient(180deg,#ebd9b5,#c89d5b);
       color:#fffaf0;font-family:inherit;font-size:17px;letter-spacing:1px;
-      cursor:pointer;text-decoration:none;box-shadow:0 9px 20px rgba(127,87,39,.2);
+      cursor:pointer;text-decoration:none;box-shadow:0 9px 20px rgba(127,87,39,.18);
     }
-    .center{text-align:center}
-    .rsvp{
-      margin-top:46px;padding-top:36px;border-top:1px solid #ead9bf;
-    }
-    .rsvp h2{
-      text-align:center;color:var(--gold);font-size:38px;font-weight:400;margin:0 0 8px;
-    }
+
+    .rsvp{margin-top:48px;padding-top:38px;border-top:1px solid #ead9bf}
+    .rsvp h2{text-align:center;color:var(--gold);font-size:40px;font-weight:400;margin:0 0 8px}
     .rsvp p{text-align:center}
-    form{max-width:650px;margin:24px auto 0;display:grid;gap:16px}
+    form{max-width:660px;margin:24px auto 0;display:grid;gap:16px}
     label{font-size:15px}
     input,select,textarea{
       width:100%;margin-top:7px;padding:14px 15px;border-radius:12px;
       border:1px solid #d8bea0;background:#fffdf9;color:var(--ink);font:inherit;
     }
     textarea{min-height:110px;resize:vertical}
-    .status{display:none;margin:20px auto 0;max-width:650px;text-align:center;padding:18px;border-radius:14px}
+    .status{display:none;margin:20px auto 0;max-width:660px;text-align:center;padding:18px;border-radius:14px}
     .status.ok{display:block;background:#edf7ec;border:1px solid #bbd9b7}
     .status.err{display:block;background:#fff0ec;border:1px solid #e2b6aa}
+
     .gift-note{
-      max-width:700px;margin:40px auto 0;padding:24px;text-align:center;line-height:1.65;
-      border-radius:17px;background:#fbf2e5;border:1px solid #ead5ba;
+      max-width:720px;margin:42px auto 0;padding:25px;text-align:center;line-height:1.65;
+      border-radius:18px;background:#fbf2e5;border:1px solid #ead5ba;
     }
-    footer{text-align:center;padding:26px;color:#80694e;font-size:13px}
+    footer{text-align:center;padding:28px;color:#80694e;font-size:13px}
 
-    .couple-photo-wrap{
-      width:min(760px,100%);
-      margin:0 auto 34px;
-      padding:18px;
-      border:1px solid var(--border);
-      border-radius:22px;
-      background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(247,234,215,.92));
-      box-shadow:0 18px 38px rgba(96,64,31,.14);
-      position:relative;
-    }
-    .couple-photo-wrap::before,
-    .couple-photo-wrap::after{
-      content:"";
-      position:absolute;
-      width:74px;height:74px;border-radius:50%;
-      background:
-        radial-gradient(circle at 32% 30%,#fff 0 20%,#eee2d1 48%,#fff 70%);
-      box-shadow:
-        26px 8px 0 -8px #fff,
-        48px 18px 0 -14px #fff,
-        10px 42px 0 -12px #fff;
-      opacity:.95;
-      z-index:2;
-    }
-    .couple-photo-wrap::before{left:-12px;top:-12px}
-    .couple-photo-wrap::after{right:-12px;bottom:-12px}
-    .couple-photo{
-      display:block;
-      width:100%;
-      height:auto;
-      max-height:720px;
-      object-fit:cover;
-      object-position:center;
-      border-radius:180px 180px 16px 16px;
-      border:4px solid #fffdf8;
-      outline:1px solid var(--gold-light);
-    }
-    .photo-caption{
-      text-align:center;
-      margin:16px 0 0;
-      color:var(--gold);
-      font-size:22px;
-      letter-spacing:1px;
-    }
-
-    @media(max-width:600px){
-      .envelope{height:310px}
-      .back,.front-left,.front-right{height:220px}
-      .flap{height:180px;top:50px}
-      .seal{top:157px;width:68px;height:68px}
-      .letter{height:205px}
-      .hero.open .letter{transform:translateY(-155px);opacity:0}
-      .pearl-frame{padding:16px}
-      .inner{padding:24px 14px 36px}
+    @media(max-width:620px){
+      .envelope{height:318px}
+      .env-back,.front-left,.front-right{height:224px}
+      .flap{height:184px;top:50px}
+      .seal{top:160px;width:70px;height:70px}
+      .env-card{height:208px}
+      .hero.open .env-card{transform:translateY(-158px);opacity:0}
+      .shell{padding:14px}
+      .photo{border-radius:125px 125px 14px 14px}
     }
   </style>
 </head>
 <body>
-  <section class="hero" id="opening">
-    <div class="hero-inner">
-      <div class="monogram">K &amp; S</div>
-      <p class="eyebrow">You are invited</p>
-      <h1>Kanchan &amp; Saurav</h1>
-      <p class="date">November 20, 2026</p>
+  <div class="page">
+    <section class="hero" id="opening">
+      <div class="hero-inner">
+        <div class="monogram">K &amp; S</div>
+        <p class="eyebrow">You are invited</p>
+        <h1>Kanchan &amp; Saurav</h1>
+        <p class="date-top">November 20, 2026</p>
 
-      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
-        <div class="shadow"></div>
-        <div class="back"></div>
-        <div class="letter"><span>K &amp; S</span></div>
-        <div class="front-left"></div>
-        <div class="front-right"></div>
-        <div class="flap"></div>
-        <div class="seal">K&amp;S</div>
-      </div>
-      <p class="tap">Tap the envelope to open</p>
-    </div>
-  </section>
-
-  <main class="main" id="main">
-    <article class="shell">
-      <div class="pearl-frame">
-        <div class="inner">
-          <img class="invitation-image" src="invitation.png" alt="Pearl engagement invitation for Kanchan and Saurav">
-
-          <div class="couple-photo-wrap">
-            <img class="couple-photo" src="engagement-photo.jpeg" alt="Kanchan and Saurav together">
-            <div class="photo-caption">Kanchan &amp; Saurav</div>
-          </div>
-
-          <div class="correct-details">
-            <div><strong>Friday, November 20, 2026</strong></div>
-            <div><strong>From 4:00 PM onwards</strong></div>
-            <div>20670 Fernbank Ct, Sterling, VA 20165, USA</div>
-            <div>Traditional attire</div>
-          </div>
-
-          <div class="center">
-            <a class="button" href="#rsvp">Celebrate With Us</a>
-          </div>
-
-          <section class="rsvp" id="rsvp">
-            <h2>Kindly RSVP</h2>
-            <p>Please respond by November 1, 2026. No plus-ones.</p>
-
-            <form id="rsvpForm">
-              <label>
-                Full name
-                <input type="text" name="fullName" required>
-              </label>
-
-              <label>
-                Will you be attending?
-                <select name="attendance" required>
-                  <option value="">Please select</option>
-                  <option value="Accepted">Joyfully accepts</option>
-                  <option value="Declined">Regretfully declines</option>
-                </select>
-              </label>
-
-              <label>
-                Message for Kanchan &amp; Saurav (optional)
-                <textarea name="message"></textarea>
-              </label>
-
-              <button class="button" type="submit">Submit RSVP</button>
-            </form>
-
-            <div class="status" id="status" aria-live="polite"></div>
-          </section>
-
-          <div class="gift-note">
-            <strong>Your presence is the greatest gift we could ask for.</strong><br>
-            Should you wish to bless us with a gift, a contribution toward our future together would be sincerely appreciated.
-            <br><em>No boxed gifts, please.</em>
-          </div>
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
+          <div class="env-shadow"></div>
+          <div class="env-back"></div>
+          <div class="env-card"><span>K &amp; S</span></div>
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="flap"></div>
+          <div class="seal">K&amp;S</div>
         </div>
+
+        <p class="tap">Tap the envelope to open</p>
       </div>
-    </article>
-    <footer>K &amp; S • November 20, 2026</footer>
-  </main>
+    </section>
+
+    <main class="content" id="content">
+      <article class="shell">
+        <img class="invitation-image" src="invitation.png" alt="Pearl engagement invitation for Kanchan and Saurav">
+
+        <div class="corrected-details">
+          <div><strong>Friday, November 20, 2026</strong></div>
+          <div><strong>From 4:00 PM onwards</strong></div>
+          <div>20670 Fernbank Ct, Potomac Falls, VA 20265</div>
+          <div><strong>Dress code:</strong> Traditional attire</div>
+        </div>
+
+        <div class="photo-card">
+          <img class="photo" src="engagement-photo.jpeg" alt="Kanchan and Saurav together">
+          <div class="caption">Kanchan &amp; Saurav</div>
+        </div>
+
+        <div class="center">
+          <a class="button" href="#rsvp">Celebrate With Us</a>
+        </div>
+
+        <section class="rsvp" id="rsvp">
+          <h2>Kindly RSVP</h2>
+          <p>Please respond by November 1, 2026. No plus-ones.</p>
+
+          <form
+            id="rsvpForm"
+            name="engagement-rsvp"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="engagement-rsvp">
+
+            <p hidden>
+              <label>Do not fill this out: <input name="bot-field"></label>
+            </p>
+
+            <label>
+              Full name
+              <input type="text" name="fullName" required>
+            </label>
+
+            <label>
+              Will you be attending?
+              <select name="attendance" required>
+                <option value="">Please select</option>
+                <option value="Accepted">Joyfully accepts</option>
+                <option value="Declined">Regretfully declines</option>
+              </select>
+            </label>
+
+            <label>
+              Message for Kanchan &amp; Saurav (optional)
+              <textarea name="message"></textarea>
+            </label>
+
+            <button class="button" type="submit">Submit RSVP</button>
+          </form>
+
+          <div class="status" id="status" aria-live="polite"></div>
+        </section>
+
+        <div class="gift-note">
+          <strong>Your presence is the greatest gift we could ask for.</strong><br>
+          Should you wish to bless us with a gift, a contribution toward our future together would be sincerely appreciated.
+          <br><em>No boxed gifts, please.</em>
+        </div>
+      </article>
+
+      <footer>K &amp; S • November 20, 2026</footer>
+    </main>
+  </div>
 
   <script>
-    // Paste your deployed Google Apps Script Web App URL here.
     const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
     const opening = document.getElementById("opening");
     const envelope = document.getElementById("envelope");
-    const main = document.getElementById("main");
+    const content = document.getElementById("content");
     const form = document.getElementById("rsvpForm");
     const statusBox = document.getElementById("status");
 
     function openInvitation(){
       if(opening.classList.contains("open")) return;
       opening.classList.add("open");
+
       setTimeout(()=>{
-        main.classList.add("visible");
-        main.scrollIntoView({behavior:"smooth"});
+        content.classList.add("visible");
+        content.scrollIntoView({behavior:"smooth"});
       },950);
     }
 
     envelope.addEventListener("click",openInvitation);
+
     envelope.addEventListener("keydown",(event)=>{
       if(event.key==="Enter" || event.key===" "){
         event.preventDefault();
@@ -340,33 +314,36 @@
       }
     });
 
-    form.addEventListener("submit", async (event)=>{
+    form.addEventListener("submit",async(event)=>{
       event.preventDefault();
 
-      if(GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")){
-        statusBox.className = "status err";
-        statusBox.textContent = "RSVP connection is not finished yet. Add the Google Apps Script URL first.";
-        return;
-      }
-
+      const formData = new FormData(form);
       const button = form.querySelector("button");
+
       button.disabled = true;
       button.textContent = "Sending...";
 
-      const formData = new FormData(form);
-      const payload = {
-        fullName: formData.get("fullName"),
-        attendance: formData.get("attendance"),
-        message: formData.get("message") || ""
-      };
-
       try{
-        await fetch(GOOGLE_SCRIPT_URL,{
+        await fetch("/",{
           method:"POST",
-          mode:"no-cors",
-          headers:{"Content-Type":"text/plain;charset=utf-8"},
-          body:JSON.stringify(payload)
+          headers:{"Content-Type":"application/x-www-form-urlencoded"},
+          body:new URLSearchParams(formData).toString()
         });
+
+        if(!GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")){
+          const payload = {
+            fullName:formData.get("fullName"),
+            attendance:formData.get("attendance"),
+            message:formData.get("message") || ""
+          };
+
+          await fetch(GOOGLE_SCRIPT_URL,{
+            method:"POST",
+            mode:"no-cors",
+            headers:{"Content-Type":"text/plain;charset=utf-8"},
+            body:JSON.stringify(payload)
+          });
+        }
 
         form.reset();
         statusBox.className = "status ok";

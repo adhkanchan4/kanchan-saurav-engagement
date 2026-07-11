@@ -1,77 +1,50 @@
-GOOGLE SHEETS RSVP SETUP — DO THIS ONCE
+GOOGLE SHEETS HEADCOUNT + EMAIL NOTIFICATIONS
 
-This website is complete. The only missing piece is connecting the RSVP form to your Google Sheet.
+1. Create a blank Google Sheet named:
+   Kanchan & Saurav RSVPs
 
-1. Open Google Sheets and create a blank spreadsheet.
-   Name it: Kanchan & Saurav RSVPs
-
-2. In the spreadsheet, click:
+2. In the Sheet, click:
    Extensions → Apps Script
 
-3. Delete any code you see.
+3. Delete any existing code.
 
-4. Open the file named:
+4. Open:
    google-apps-script.gs
 
-5. Copy all of that code and paste it into Apps Script.
+5. Copy all code into Apps Script and save.
 
-6. Click Save.
-
-7. At the top, choose the function:
+6. Select:
    setupGuestList
-   Then click Run.
 
-8. Google will ask for permission.
-   Approve it.
+7. Click Run and approve permissions.
 
-9. In Apps Script, click:
-   Deploy → New deployment
+8. Click:
+   Deploy → New deployment → Web app
 
-10. Click the gear beside "Select type" and choose:
-    Web app
+9. Set:
+   Execute as: Me
+   Who has access: Anyone
 
-11. Set:
-    Execute as: Me
-    Who has access: Anyone
+10. Click Deploy and copy the Web App URL.
 
-12. Click Deploy.
+11. Open index.html in a plain-text editor.
 
-13. Copy the Web App URL.
-
-14. Open index.html in a text editor.
-
-15. Find this line:
+12. Find:
     const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
-16. Replace only the words inside the quotation marks with your Web App URL.
+13. Replace the placeholder with your Web App URL.
 
-17. Save index.html.
+14. Save index.html and upload it to GitHub.
 
-18. Upload these files to your GitHub repository:
-    - index.html
-    - invitation.png
-    - google-apps-script.gs
-    - SETUP-GOOGLE-SHEETS.txt
+RESULTS
 
-19. GitHub will update Netlify automatically.
+- Every RSVP is emailed to adhkanchan4@gmail.com
+- RSVP Responses stores every answer
+- Guest List shows Accepted, Declined, or Pending
+- Headcount Summary totals all three categories
+- Netlify Forms keeps a backup
 
-HOW TO TRACK EVERYONE
+IMPORTANT
 
-In your Google Sheet:
-
-- RSVP Responses:
-  Every submitted RSVP appears here.
-
-- Guest List:
-  Put every invited guest's exact name in Column A.
-  Column B will automatically change to:
-  Accepted
-  Declined
-  Pending
-
-Anyone still marked Pending has not replied.
-
-EMAIL NOTIFICATIONS
-
-Every new RSVP will also email:
-adhkanchan4@gmail.com
+Add all invited guests to Column A in Guest List.
+Set Column B to Pending before sending invitations.

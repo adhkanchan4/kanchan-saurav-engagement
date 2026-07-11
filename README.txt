@@ -1,23 +1,11 @@
-Kanchan & Saurav Pearl Engagement Website
+Kanchan & Saurav — Original Invitation Website with Engagement Photo
 
-Website files:
-- index.html
-- invitation.png
-
-Google RSVP setup:
-- google-apps-script.gs
-- SETUP-GOOGLE-SHEETS.txt
-
-The website includes:
-- Click-to-open envelope
-- Pearl and ivory aesthetic
-- Approved invitation image
-- Your engagement photo
-- Correct event details shown below the invitation
+Included:
+- Exact original pearl invitation image
+- Engagement photo
+- Envelope opening animation
+- Corrected event details shown clearly below the image
 - RSVP form
-- Google Sheet tracking
+- Google Sheets headcount
 - Email notifications
-- Guest List statuses: Accepted, Declined, Pending
-
-Additional file:
-- engagement-photo.jpeg
+- Netlify Forms backup
