@@ -3,48 +3,64 @@ GOOGLE SHEETS HEADCOUNT + EMAIL NOTIFICATIONS
 1. Create a blank Google Sheet named:
    Kanchan & Saurav RSVPs
 
-2. In the Sheet, click:
+2. In the Google Sheet, click:
    Extensions → Apps Script
 
-3. Delete any existing code.
+3. Delete the code already shown in Apps Script.
 
-4. Open:
+4. Open the downloaded file:
    google-apps-script.gs
 
-5. Copy all code into Apps Script and save.
+5. Copy all the code from that file and paste it into Apps Script.
 
-6. Select:
+6. Click Save.
+
+7. At the top, select the function:
    setupGuestList
 
-7. Click Run and approve permissions.
+8. Click Run and approve the requested Google permissions.
 
-8. Click:
-   Deploy → New deployment → Web app
+9. Click:
+   Deploy → New deployment
 
-9. Set:
-   Execute as: Me
-   Who has access: Anyone
+10. Choose:
+    Type: Web app
+    Execute as: Me
+    Who has access: Anyone
 
-10. Click Deploy and copy the Web App URL.
+11. Click Deploy.
 
-11. Open index.html in a plain-text editor.
+12. Copy the Web App URL.
 
-12. Find:
+13. Open index.html in a plain-text editor.
+
+14. Find:
     const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
-13. Replace the placeholder with your Web App URL.
+15. Replace only the placeholder with your Web App URL.
 
-14. Save index.html and upload it to GitHub.
+16. Save index.html and upload all six files to GitHub.
 
-RESULTS
+WHAT YOU WILL RECEIVE
 
-- Every RSVP is emailed to adhkanchan4@gmail.com
-- RSVP Responses stores every answer
-- Guest List shows Accepted, Declined, or Pending
-- Headcount Summary totals all three categories
-- Netlify Forms keeps a backup
+- Every RSVP is emailed to:
+  adhkanchan4@gmail.com
+
+- RSVP Responses stores every submission.
+
+- Guest List shows:
+  Accepted
+  Declined
+  Pending
+
+- Headcount Summary automatically counts each category.
+
+- Netlify Forms keeps a backup copy of every RSVP.
 
 IMPORTANT
 
-Add all invited guests to Column A in Guest List.
-Set Column B to Pending before sending invitations.
+Before sharing the invitation:
+
+1. Open the Guest List tab.
+2. Add each invited guest's exact name in Column A.
+3. Put Pending in Column B for every invited guest.

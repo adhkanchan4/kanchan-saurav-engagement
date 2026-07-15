@@ -39,12 +39,13 @@ function doPost(e) {
     responses.appendRow([timestamp, fullName, attendance, message]);
 
     const lastRow = guests.getLastRow();
+
     if (lastRow >= 2) {
       const names = guests.getRange(2, 1, lastRow - 1, 1).getValues();
-      const normalized = normalizeName(fullName);
+      const normalizedName = normalizeName(fullName);
 
       for (let i = 0; i < names.length; i++) {
-        if (normalizeName(names[i][0]) === normalized) {
+        if (normalizeName(names[i][0]) === normalizedName) {
           guests.getRange(i + 2, 2).setValue(attendance);
           guests.getRange(i + 2, 3).setValue(timestamp);
           break;
@@ -53,6 +54,7 @@ function doPost(e) {
     }
 
     const counts = calculateCounts(guests);
+
     summary.getRange("B2:B4").setValues([
       [counts.accepted],
       [counts.declined],
@@ -118,11 +120,12 @@ function calculateCounts(guests) {
   }
 
   const statuses = guests.getRange(2, 2, lastRow - 1, 1).getValues();
+
   let accepted = 0;
   let declined = 0;
   let pending = 0;
 
-  statuses.forEach(function(row) {
+  statuses.forEach(row => {
     const status = String(row[0] || "Pending").trim().toLowerCase();
 
     if (status === "accepted") {
@@ -134,18 +137,21 @@ function calculateCounts(guests) {
     }
   });
 
-  return {accepted:accepted, declined:declined, pending:pending};
+  return {accepted, declined, pending};
 }
 
 function normalizeName(value) {
-  return String(value || "").trim().toLowerCase().replace(/\s+/g," ");
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
 }
 
 function escapeHtml(value) {
   return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
