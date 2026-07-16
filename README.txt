@@ -1,27 +1,17 @@
-Kanchan & Saurav — Exact Invitation Website
+Kanchan & Saurav — Final Website with Original 3 PM Time
 
-Upload these six files directly to the main area of the GitHub repository:
+Restored:
+- Original invitation artwork
+- Original event time:
+  FROM 3:00 PM
+  ONWARDS
 
-1. README.txt
-2. SETUP-GOOGLE-SHEETS.txt
-3. engagement-photo.jpeg
-4. google-apps-script.gs
-5. index.html
-6. invitation.png
-
-This website uses the exact approved invitation image without changing its design.
-
-Included:
-- Exact pearl and ivory satin invitation
-- Exact engagement photo shown in the invitation
-- Friday, November 20, 2026
-- From 3:00 PM onwards
-- 20670 Fernbank Ct, Potomac Falls, VA 20265
-- Nepali / Indian traditional attire
-- RSVP deadline: November 1, 2026
-- Gift wording at the bottom
-- Clickable Open Invitation area
-- Working RSVP form placed over the designed RSVP boxes
+Kept unchanged:
+- Larger first-page envelope
+- K&S wax seal
+- Envelope opening animation
+- RSVP form
 - Google Sheets headcount
 - Email notifications
-- Netlify Forms backup
+- Link preview
+- Engagement photo
