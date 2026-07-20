@@ -1,513 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanchan &amp; Saurav | Engagement Celebration</title>
-  <meta name="description" content="Kanchan and Saurav's engagement celebration invitation">
-
-  <meta property="og:title" content="Kanchan & Saurav | Engagement Invitation">
-  <meta property="og:description" content="Come celebrate the chapter of us.">
-  <meta property="og:image" content="https://YOUR-NETLIFY-SITE.netlify.app/link-preview.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kanchan & Saurav | Engagement Invitation">
-  <meta name="twitter:description" content="Come celebrate the chapter of us.">
-  <meta name="twitter:image" content="https://YOUR-NETLIFY-SITE.netlify.app/link-preview.png">
-
-  <style>
-    :root {
-      --gold:#b78943;
-      --gold-dark:#7d521b;
-      --ivory:#fffaf2;
-      --ink:#4e3928;
-    }
-
-    * { box-sizing:border-box; }
-
-    html { scroll-behavior:smooth; }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      font-family:Georgia,"Times New Roman",serif;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 14% 8%,rgba(255,255,255,.92),transparent 30%),
-        radial-gradient(circle at 87% 88%,rgba(255,255,255,.72),transparent 28%),
-        linear-gradient(135deg,#fffaf2,#ead8bb 52%,#fff8eb);
-    }
-
-    .opening-screen {
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:24px 10px;
-      overflow:hidden;
-      background:transparent;
-    }
-
-    .opening-inner {
-      width:min(980px,100%);
-      text-align:center;
-      background:transparent;
-    }
-
-    .opening-kicker {
-      margin:0 0 9px;
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:12px;
-      color:#725d46;
-    }
-
-    .opening-title {
-      margin:0;
-      color:var(--gold-dark);
-      font-family:Baskerville,"Palatino Linotype",Georgia,serif;
-      font-size:clamp(39px,6.5vw,68px);
-      line-height:1.08;
-      font-weight:500;
-    }
-
-    .opening-subtitle {
-      max-width:610px;
-      margin:15px auto 20px;
-      font-size:clamp(17px,2.5vw,23px);
-      line-height:1.5;
-    }
-
-    .envelope-scene {
-      position:relative;
-      width:min(1180px,99vw);
-      height:820px;
-      margin:8px auto 0;
-      perspective:2000px;
-      cursor:pointer;
-      background:transparent;
-    }
-
-    .scene-shadow {
-      position:absolute;
-      left:7%;
-      right:7%;
-      bottom:28px;
-      height:52px;
-      border-radius:50%;
-      background:rgba(72,46,20,.15);
-      filter:blur(24px);
-    }
-
-    .envelope-back {
-      position:absolute;
-      left:1.5%;
-      right:1.5%;
-      top:120px;
-      height:625px;
-      border-radius:15px;
-      border:1px solid rgba(183,137,67,.30);
-      background:linear-gradient(145deg,#fffdf8,#ead7bb);
-      box-shadow:0 32px 70px rgba(82,53,24,.17);
-      z-index:1;
-    }
-
-    .invitation-preview {
-      position:absolute;
-      left:22%;
-      right:22%;
-      top:155px;
-      height:530px;
-      z-index:2;
-      overflow:hidden;
-      border-radius:9px;
-      border:1px solid rgba(183,137,67,.32);
-      background:#f8ead5;
-      box-shadow:0 10px 24px rgba(83,52,20,.13);
-      opacity:0;
-      transform:translateY(95px);
-      transition:
-        opacity .28s ease .96s,
-        transform 1.08s cubic-bezier(.18,.85,.22,1) 1.10s;
-    }
-
-    .invitation-preview img {
-      display:block;
-      width:100%;
-      height:auto;
-      transform:translateY(-1%);
-    }
-
-    .front-left,
-    .front-right {
-      position:absolute;
-      top:120px;
-      width:49%;
-      height:625px;
-      z-index:4;
-      background:linear-gradient(145deg,#f7ead6,#fffaf2);
-    }
-
-    .front-left {
-      left:1.5%;
-      clip-path:polygon(0 0,100% 53%,100% 100%,0 100%);
-    }
-
-    .front-right {
-      right:1.5%;
-      clip-path:polygon(100% 0,0 53%,0 100%,100% 100%);
-    }
-
-    .envelope-flap {
-      position:absolute;
-      left:1.5%;
-      right:1.5%;
-      top:120px;
-      height:330px;
-      z-index:5;
-      transform-origin:top center;
-      transform-style:preserve-3d;
-      transition:transform .92s cubic-bezier(.3,.1,.2,1);
-      clip-path:polygon(0 0,100% 0,50% 100%);
-      background:linear-gradient(160deg,#fffdf8,#e5cca5);
-      filter:drop-shadow(0 8px 10px rgba(83,52,20,.08));
-    }
-
-    .wax-seal {
-      position:absolute;
-      left:50%;
-      top:450px;
-      transform:translate(-50%,-50%);
-      width:154px;
-      height:154px;
-      z-index:8;
-      background:url("wax-seal-ks.png") center/contain no-repeat;
-      filter:drop-shadow(0 10px 12px rgba(73,43,9,.28));
-      transition:opacity .28s ease .16s,transform .28s ease .16s;
-    }
-
-    .tap-note {
-      margin:12px 0 0;
-      color:#705b45;
-      text-transform:uppercase;
-      letter-spacing:2.4px;
-      font-size:12px;
-    }
-
-    .opening-screen.open .wax-seal {
-      opacity:0;
-      transform:translate(-50%,-50%) scale(.72);
-    }
-
-    .opening-screen.open .envelope-flap {
-      transform:rotateX(180deg);
-      z-index:1;
-    }
-
-    .opening-screen.open .invitation-preview {
-      opacity:1;
-      transform:translateY(-600px) scale(1.035);
-    }
-
-    .website {
-      display:none;
-      width:min(864px,100%);
-      margin:0 auto;
-      position:relative;
-      background:#f5e5cc;
-      box-shadow:0 0 56px rgba(79,49,19,.23);
-      overflow:hidden;
-      animation:reveal .85s ease both;
-    }
-
-    .website.visible { display:block; }
-
-    @keyframes reveal {
-      from { opacity:0; transform:translateY(22px); }
-      to { opacity:1; transform:none; }
-    }
-
-    .full-invitation {
-      display:block;
-      width:100%;
-      height:auto;
-    }
-
-    /* Real RSVP controls are still placed over the exact invitation design. */
-    .rsvp-form {
-      position:absolute;
-      left:8.4%;
-      top:80.55%;
-      width:83.2%;
-      height:7.2%;
-      display:grid;
-      grid-template-columns:1fr 1fr 1.08fr;
-      grid-template-rows:54% 36%;
-      gap:8% 1.25%;
-      z-index:6;
-    }
-
-    .field,
-    .select,
-    .message {
-      width:100%;
-      min-width:0;
-      border:1px solid rgba(183,131,53,.42);
-      border-radius:10px;
-      background:rgba(255,251,245,.965);
-      color:#4a3524;
-      padding:0 13px;
-      font:600 clamp(10px,1.5vw,15px) Georgia,"Times New Roman",serif;
-      outline:none;
-      box-shadow:inset 0 1px 2px rgba(91,56,21,.05);
-    }
-
-    .field:focus,
-    .select:focus,
-    .message:focus {
-      border-color:var(--gold);
-      box-shadow:0 0 0 3px rgba(183,131,53,.15);
-    }
-
-    .submit {
-      grid-column:1/-1;
-      justify-self:center;
-      width:30%;
-      min-width:155px;
-      border:0;
-      border-radius:999px;
-      color:#553717;
-      background:linear-gradient(#efd8a5,#c78e3a);
-      font:700 clamp(11px,1.5vw,15px) Georgia,"Times New Roman",serif;
-      letter-spacing:.05em;
-      cursor:pointer;
-      box-shadow:0 5px 13px rgba(96,58,19,.22);
-    }
-
-    .status {
-      position:absolute;
-      left:16%;
-      top:88.25%;
-      width:68%;
-      display:none;
-      z-index:8;
-      text-align:center;
-      padding:10px 14px;
-      border-radius:12px;
-      font-size:clamp(10px,1.4vw,14px);
-    }
-
-    .status.ok {
-      display:block;
-      background:#eef8ec;
-      border:1px solid #b7d7b2;
-    }
-
-    .status.err {
-      display:block;
-      background:#fff0ec;
-      border:1px solid #e0b5aa;
-    }
-
-    @media(max-width:620px) {
-      .envelope-scene {
-        width:99vw;
-        height:625px;
-      }
-
-      .envelope-back,
-      .front-left,
-      .front-right {
-        top:92px;
-        height:465px;
-      }
-
-      .envelope-flap {
-        top:92px;
-        height:245px;
-      }
-
-      .wax-seal {
-        top:337px;
-        width:118px;
-        height:118px;
-      }
-
-      .invitation-preview {
-        top:120px;
-        height:390px;
-        transform:translateY(78px);
-      }
-
-      .opening-screen.open .invitation-preview {
-        transform:translateY(-430px) scale(1.025);
-      }
-
-      
-
-      
-
-      
-
-      .rsvp-form {
-        left:7.5%;
-        width:85%;
-        top:80.2%;
-        height:8.1%;
-        grid-template-columns:1fr;
-        grid-template-rows:repeat(3,24%) 20%;
-        gap:3%;
-      }
-
-      .submit {
-        grid-column:1;
-        width:46%;
-        min-width:130px;
-      }
-
-      .status {
-        top:89.2%;
-        left:9%;
-        width:82%;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4e7d2" />
+  <meta name="description" content="Kanchan and Saurav's engagement invitation — November 20, 2026." />
+  <title>Kanchan &amp; Saurav — Engagement Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/invitation-cover.png" />
+  <link rel="preload" as="image" href="assets/invitation-only.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="opening-screen" id="openingScreen">
-    <div class="opening-inner">
-      <p class="opening-kicker">A celebration of love and a beautiful new beginning</p>
-      <h1 class="opening-title">Come Celebrate the Chapter of Us</h1>
-      <p class="opening-subtitle">You are warmly invited to Kanchan &amp; Saurav’s engagement celebration.</p>
+  <main>
+    <section class="cover-screen" id="coverScreen" aria-label="Engagement invitation cover">
+      <div class="cover-stage" id="coverStage">
+        <img class="cover-art" src="assets/invitation-cover.png" alt="Pearl and flower engagement invitation cover with an ivory envelope and red K and S wax seal" />
+        <div class="flap" aria-hidden="true"></div>
+        <button class="seal-button" id="sealButton" type="button" aria-label="Tap the K and S wax seal to open the invitation">
+          <span class="sr-only">Open invitation</span>
+        </button>
+      </div>
+    </section>
 
-      <div class="envelope-scene" id="envelopeScene" role="button" tabindex="0" aria-label="Open invitation">
-        <div class="scene-shadow"></div>
-        <div class="envelope-back"></div>
-
-        <div class="invitation-preview">
-          <img src="invitation.png" alt="">
-        </div>
-
-        <div class="front-left"></div>
-        <div class="front-right"></div>
-        <div class="envelope-flap"></div>
-        <div class="wax-seal" aria-hidden="true"></div>
+    <section class="invitation-screen" id="invitationScreen" aria-hidden="true">
+      <div class="invitation-wrap">
+        <img class="invitation-art" src="assets/invitation-only.png" alt="Kanchan and Saurav engagement invitation with event details, photo, gift note, and hashtag" />
+        <a class="rsvp-hotspot" href="#reserve" aria-label="Go to the RSVP section"></a>
       </div>
 
-      <p class="tap-note">Tap the wax seal to open the invitation</p>
-    </div>
-  </section>
+      <section class="reserve-section" id="reserve" aria-labelledby="reserveTitle">
+        <div class="reserve-card">
+          <p class="reserve-kicker">Kindly RSVP by October 20th, 2026</p>
+          <h2 id="reserveTitle">Celebrate With Us</h2>
+          <p class="reserve-note">Please submit one response per invited guest. No plus-ones, please.</p>
 
-  <main class="website" id="website">
-    <img
-      class="full-invitation"
-      src="invitation.png"
-      alt="Pearl and gold engagement invitation for Kanchan and Saurav">
+          <form id="rsvpForm" class="rsvp-form">
+            <div class="field full-width">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" name="name" autocomplete="name" required placeholder="Enter your full name" />
+            </div>
 
-    <form
-      class="rsvp-form"
-      id="rsvpForm"
-      name="engagement-rsvp"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field">
+            <div class="field full-width">
+              <label for="attendance">Will you be attending?</label>
+              <select id="attendance" name="attendance" required>
+                <option value="" selected disabled>Select your response</option>
+                <option value="Yes — attending">Yes, I will be attending</option>
+                <option value="No — unable to attend">No, I am unable to attend</option>
+              </select>
+            </div>
 
-      <input type="hidden" name="form-name" value="engagement-rsvp">
-      <input type="text" name="bot-field" hidden>
+            <div class="field full-width">
+              <label for="message">Message <span>(optional)</span></label>
+              <textarea id="message" name="message" rows="4" placeholder="Leave a message for Kanchan & Saurav"></textarea>
+            </div>
 
-      <input
-        class="field"
-        type="text"
-        name="fullName"
-        placeholder="Full Name"
-        required>
+            <button class="submit-rsvp" type="submit">Submit RSVP</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
 
-      <select class="select" name="attendance" required>
-        <option value="">Will you be attending?</option>
-        <option value="Accepted">Joyfully accepts</option>
-        <option value="Declined">Regretfully declines</option>
-      </select>
-
-      <input
-        class="message"
-        type="text"
-        name="message"
-        placeholder="Message (optional)">
-
-      <button class="submit" type="submit">SUBMIT RSVP</button>
-    </form>
-
-    <div class="status" id="status" aria-live="polite"></div>
+      <button class="close-invitation" id="closeInvitation" type="button">Return to Envelope</button>
+    </section>
   </main>
 
-  <script>
-    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-
-    const openingScreen = document.getElementById("openingScreen");
-    const envelopeScene = document.getElementById("envelopeScene");
-    const website = document.getElementById("website");
-    const form = document.getElementById("rsvpForm");
-    const statusBox = document.getElementById("status");
-
-    function openInvitation() {
-      if(openingScreen.classList.contains("open")) return;
-
-      openingScreen.classList.add("open");
-
-      setTimeout(() => {
-        website.classList.add("visible");
-        website.scrollIntoView({behavior:"smooth", block:"start"});
-      }, 2250);
-    }
-
-    envelopeScene.addEventListener("click", openInvitation);
-
-    envelopeScene.addEventListener("keydown", event => {
-      if(event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openInvitation();
-      }
-    });
-
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-
-      const data = new FormData(form);
-      const submitButton = form.querySelector(".submit");
-
-      submitButton.disabled = true;
-      submitButton.textContent = "SENDING...";
-
-      try {
-        await fetch("/", {
-          method:"POST",
-          headers:{"Content-Type":"application/x-www-form-urlencoded"},
-          body:new URLSearchParams(data).toString()
-        });
-
-        if(!GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method:"POST",
-            mode:"no-cors",
-            headers:{"Content-Type":"text/plain;charset=utf-8"},
-            body:JSON.stringify({
-              fullName:data.get("fullName"),
-              attendance:data.get("attendance"),
-              message:data.get("message") || ""
-            })
-          });
-        }
-
-        form.reset();
-        statusBox.className = "status ok";
-        statusBox.textContent = "Thank you! Your RSVP has been received.";
-      } catch(error) {
-        statusBox.className = "status err";
-        statusBox.textContent = "Something went wrong. Please try again.";
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = "SUBMIT RSVP";
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

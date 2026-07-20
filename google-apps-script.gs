@@ -1,157 +1,27 @@
-const NOTIFY_EMAIL = "adhkanchan4@gmail.com";
+const SHEET_NAME = "RSVP Responses";
+const NOTIFICATION_EMAIL = "YOUR_EMAIL_ADDRESS@gmail.com";
 
 function doPost(e) {
-  const lock = LockService.getScriptLock();
-  lock.waitLock(30000);
-
   try {
     const data = JSON.parse(e.postData.contents || "{}");
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-    let responses = ss.getSheetByName("RSVP Responses");
-    if (!responses) {
-      responses = ss.insertSheet("RSVP Responses");
-      responses.appendRow(["Timestamp", "Full Name", "Attendance", "Message"]);
+    let sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(SHEET_NAME);
+      sheet.appendRow(["Timestamp", "Full Name", "Attendance", "Message"]);
+      sheet.setFrozenRows(1);
     }
-
-    let guests = ss.getSheetByName("Guest List");
-    if (!guests) {
-      guests = ss.insertSheet("Guest List");
-      guests.appendRow(["Invited Guest Name", "Status", "Response Time"]);
-    }
-
-    let summary = ss.getSheetByName("Headcount Summary");
-    if (!summary) {
-      summary = ss.insertSheet("Headcount Summary");
-      summary.getRange("A1:B4").setValues([
-        ["Category", "Count"],
-        ["Accepted", 0],
-        ["Declined", 0],
-        ["Pending", 0]
-      ]);
-    }
-
     const timestamp = new Date();
-    const fullName = String(data.fullName || "").trim();
-    const attendance = String(data.attendance || "").trim();
-    const message = String(data.message || "").trim();
-
-    responses.appendRow([timestamp, fullName, attendance, message]);
-
-    const lastRow = guests.getLastRow();
-
-    if (lastRow >= 2) {
-      const names = guests.getRange(2, 1, lastRow - 1, 1).getValues();
-      const normalizedName = normalizeName(fullName);
-
-      for (let i = 0; i < names.length; i++) {
-        if (normalizeName(names[i][0]) === normalizedName) {
-          guests.getRange(i + 2, 2).setValue(attendance);
-          guests.getRange(i + 2, 3).setValue(timestamp);
-          break;
-        }
-      }
-    }
-
-    const counts = calculateCounts(guests);
-
-    summary.getRange("B2:B4").setValues([
-      [counts.accepted],
-      [counts.declined],
-      [counts.pending]
-    ]);
-
+    sheet.appendRow([timestamp, data.name || "", data.attendance || "", data.message || ""]);
     MailApp.sendEmail({
-      to: NOTIFY_EMAIL,
-      subject: "New Engagement RSVP: " + fullName,
-      htmlBody:
-        "<h2>New RSVP Received</h2>" +
-        "<p><strong>Name:</strong> " + escapeHtml(fullName) + "</p>" +
-        "<p><strong>Response:</strong> " + escapeHtml(attendance) + "</p>" +
-        "<p><strong>Message:</strong> " + escapeHtml(message || "No message") + "</p>" +
-        "<hr>" +
-        "<h3>Current Headcount</h3>" +
-        "<p><strong>Accepted:</strong> " + counts.accepted + "</p>" +
-        "<p><strong>Declined:</strong> " + counts.declined + "</p>" +
-        "<p><strong>Pending:</strong> " + counts.pending + "</p>"
+      to: NOTIFICATION_EMAIL,
+      subject: "New engagement RSVP from " + (data.name || "Guest"),
+      htmlBody: "<b>Name:</b> " + escapeHtml(data.name) + "<br><b>Attendance:</b> " + escapeHtml(data.attendance) + "<br><b>Message:</b> " + escapeHtml(data.message || "None")
     });
-
-    return ContentService
-      .createTextOutput(JSON.stringify({ok:true}))
-      .setMimeType(ContentService.MimeType.JSON);
-
-  } finally {
-    lock.releaseLock();
+    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ok:false,error:String(error)})).setMimeType(ContentService.MimeType.JSON);
   }
 }
-
-function setupGuestList() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-  let guests = ss.getSheetByName("Guest List");
-  if (!guests) {
-    guests = ss.insertSheet("Guest List");
-    guests.appendRow(["Invited Guest Name", "Status", "Response Time"]);
-  }
-
-  let responses = ss.getSheetByName("RSVP Responses");
-  if (!responses) {
-    responses = ss.insertSheet("RSVP Responses");
-    responses.appendRow(["Timestamp", "Full Name", "Attendance", "Message"]);
-  }
-
-  let summary = ss.getSheetByName("Headcount Summary");
-  if (!summary) {
-    summary = ss.insertSheet("Headcount Summary");
-    summary.getRange("A1:B4").setValues([
-      ["Category", "Count"],
-      ["Accepted", 0],
-      ["Declined", 0],
-      ["Pending", 0]
-    ]);
-  }
-}
-
-function calculateCounts(guests) {
-  const lastRow = guests.getLastRow();
-
-  if (lastRow < 2) {
-    return {accepted:0, declined:0, pending:0};
-  }
-
-  const statuses = guests.getRange(2, 2, lastRow - 1, 1).getValues();
-
-  let accepted = 0;
-  let declined = 0;
-  let pending = 0;
-
-  statuses.forEach(row => {
-    const status = String(row[0] || "Pending").trim().toLowerCase();
-
-    if (status === "accepted") {
-      accepted++;
-    } else if (status === "declined") {
-      declined++;
-    } else {
-      pending++;
-    }
-  });
-
-  return {accepted, declined, pending};
-}
-
-function normalizeName(value) {
-  return String(value || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, " ");
-}
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+function doGet(){ return ContentService.createTextOutput("Kanchan & Saurav RSVP endpoint is active."); }
+function escapeHtml(value){ return String(value || "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
