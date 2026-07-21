@@ -1,9 +1,18 @@
 :root{--ivory:#f6ead6;--cream:#f3e4cd;--gold:#a56b19;--ink:#35271c}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--ivory);color:var(--ink);font-family:"Times New Roman",Times,serif}button,input,select,textarea{font:inherit}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* FRONT PAGE: only the supplied cover artwork, centered, never cropped or stretched. */
-.cover-screen{position:fixed;inset:0;z-index:30;display:grid;place-items:center;overflow:hidden;background:#f6ead6;transition:opacity .35s ease,visibility 0s linear .35s}
-.cover-stage{position:relative;width:min(100vw,1100px);max-height:100svh;aspect-ratio:2048/1448;transform-origin:center;animation:coverArrive 1s ease both;perspective:1400px}
+/* FRONT PAGE: full-screen floral satin presentation with the complete cover centered. */
+.cover-screen{
+  position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;
+  min-height:100svh;overflow:hidden;
+  background:#f6ead6 url("background.png") center/cover no-repeat;
+  transition:opacity .35s ease,visibility 0s linear .35s;
+}
+.cover-screen::before{content:"";position:absolute;inset:0;background:rgba(255,248,236,.08);pointer-events:none}
+.cover-stage{
+  position:relative;z-index:1;width:100vw;max-width:1180px;aspect-ratio:2048/1448;
+  transform-origin:center;animation:coverArrive 1s ease both;perspective:1400px;
+}
 .cover-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 34px rgba(70,44,17,.18))}
 .seal-button{position:absolute;left:45.2%;top:68.1%;width:9.7%;aspect-ratio:1;border:0;border-radius:50%;background:transparent;cursor:pointer;z-index:8;transition:transform .25s ease,filter .25s ease}.seal-button:hover,.seal-button:focus-visible{transform:scale(1.06);filter:drop-shadow(0 0 14px rgba(255,220,135,.95));outline:none}
 .flap{position:absolute;left:15.2%;top:47.2%;width:69.6%;height:21.5%;z-index:6;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(145deg,#fffaf1 0%,#f5e7d2 72%,#ead4b4 100%);filter:drop-shadow(0 8px 7px rgba(93,60,26,.16));opacity:0;backface-visibility:hidden;pointer-events:none}
@@ -15,8 +24,8 @@
 @keyframes coverArrive{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:none}}@keyframes sealBreak{0%{transform:scale(1);opacity:1}55%{transform:scale(.82)}100%{transform:scale(.62);opacity:0}}@keyframes flapOpen{0%{transform:rotateX(0deg);opacity:1}55%{transform:rotateX(-112deg);opacity:1}100%{transform:rotateX(-176deg);opacity:.15}}@keyframes coverDepart{to{opacity:0;transform:translateY(-5%) scale(1.01)}}@keyframes veilIn{to{opacity:1}}@keyframes invitationReveal{from{opacity:0;transform:translateY(28px) scale(.992)}to{opacity:1;transform:none}}
 
 @media(max-width:600px){
-  .cover-screen{background:#f6ead6;padding:0}
-  .cover-stage{width:100vw;height:auto;max-height:100svh;aspect-ratio:2048/1448;margin:auto}
+  .cover-screen{padding:0;background-position:center;background-size:cover}
+  .cover-stage{width:100vw;max-width:none;aspect-ratio:2048/1448;margin:0 auto}
   .cover-art{width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
   .invitation-wrap{width:100%;max-width:863px;margin:0 auto;left:auto;transform:none}
   .reserve-section{width:100%;padding:0 14px}.reserve-card{padding:30px 18px;border-radius:22px}.reserve-note{font-size:14px}.close-invitation{margin-top:16px}
