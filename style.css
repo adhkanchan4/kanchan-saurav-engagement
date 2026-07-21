@@ -1,201 +1,24 @@
-:root{--ivory:#fffaf1;--cream:#f3e4cd;--gold:#a56b19;--gold-light:#d6a44f;--wine:#8b1917;--ink:#35271c}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:#efe1ca;color:var(--ink);font-family:"Times New Roman",Times,serif}button,input,select,textarea{font:inherit}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{--ivory:#f6ead6;--cream:#f3e4cd;--gold:#a56b19;--ink:#35271c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--ivory);color:var(--ink);font-family:"Times New Roman",Times,serif}button,input,select,textarea{font:inherit}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-.cover-screen{position:fixed;inset:0;z-index:30;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:url("background.png") center/cover no-repeat}.cover-screen::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,252,244,.12),rgba(228,204,169,.12));pointer-events:none}.cover-stage{position:relative;z-index:1;width:min(100vw,1024px);transform-origin:center;animation:coverArrive 1.1s ease both;perspective:1400px}.cover-art{display:block;width:100%;height:auto;max-height:100svh;object-fit:contain;filter:drop-shadow(0 24px 42px rgba(70,44,17,.27))}
+/* FRONT PAGE: only the supplied cover artwork, centered, never cropped or stretched. */
+.cover-screen{position:fixed;inset:0;z-index:30;display:grid;place-items:center;overflow:hidden;background:#f6ead6;transition:opacity .35s ease,visibility 0s linear .35s}
+.cover-stage{position:relative;width:min(100vw,1100px);max-height:100svh;aspect-ratio:2048/1448;transform-origin:center;animation:coverArrive 1s ease both;perspective:1400px}
+.cover-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 34px rgba(70,44,17,.18))}
+.seal-button{position:absolute;left:45.2%;top:68.1%;width:9.7%;aspect-ratio:1;border:0;border-radius:50%;background:transparent;cursor:pointer;z-index:8;transition:transform .25s ease,filter .25s ease}.seal-button:hover,.seal-button:focus-visible{transform:scale(1.06);filter:drop-shadow(0 0 14px rgba(255,220,135,.95));outline:none}
+.flap{position:absolute;left:15.2%;top:47.2%;width:69.6%;height:21.5%;z-index:6;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(145deg,#fffaf1 0%,#f5e7d2 72%,#ead4b4 100%);filter:drop-shadow(0 8px 7px rgba(93,60,26,.16));opacity:0;backface-visibility:hidden;pointer-events:none}
+.cover-screen.opening .flap{opacity:1;animation:flapOpen 1.15s cubic-bezier(.2,.72,.18,1) forwards}.cover-screen.opening .seal-button{animation:sealBreak .48s ease forwards}.cover-screen.opening .cover-stage{animation:coverDepart .9s 1.08s cubic-bezier(.45,0,.2,1) forwards}.cover-screen.cover-finished{visibility:hidden;pointer-events:none;opacity:0}.cover-screen.opening::after{content:"";position:fixed;inset:0;z-index:20;background:#f5e8d4;opacity:0;pointer-events:none;animation:veilIn .5s 1.12s ease forwards}
 
-/* The only clickable opening control sits exactly over the single red seal in the artwork. */
-.seal-button{position:absolute;left:45.1%;top:68.2%;width:9.8%;aspect-ratio:1;border:0;border-radius:50%;background:transparent;cursor:pointer;z-index:8;transition:transform .25s ease,filter .25s ease}.seal-button:hover,.seal-button:focus-visible{transform:scale(1.06);filter:drop-shadow(0 0 14px rgba(255,220,135,.95));outline:none}
+.invitation-screen{display:grid;min-height:100svh;align-content:start;justify-items:center;padding:0 0 42px;background:#f1e3cc;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}.invitation-open .invitation-screen{opacity:1;transform:none;pointer-events:auto;animation:invitationReveal .82s ease both}.invitation-wrap{position:relative;width:min(100%,863px);margin-inline:auto;filter:drop-shadow(0 22px 38px rgba(65,39,13,.24))}.invitation-art{display:block;width:100%;height:auto}.rsvp-hotspot{position:absolute;left:34.7%;top:75.9%;width:30.8%;height:3.25%;border:0;border-radius:999px;background:transparent;cursor:pointer}.close-invitation{margin-top:22px;padding:11px 24px;border:1px solid #b6843c;border-radius:999px;background:#fff8ed;color:#80561f;cursor:pointer;box-shadow:0 8px 18px rgba(91,57,18,.12)}
+.reserve-section{width:min(94%,760px);margin:28px auto 4px;padding:0 12px;scroll-margin-top:24px}.reserve-card{position:relative;overflow:hidden;padding:38px clamp(20px,5vw,54px);border:1px solid rgba(177,124,47,.48);border-radius:28px;background:linear-gradient(145deg,rgba(255,253,248,.97),rgba(246,232,213,.97));box-shadow:0 20px 48px rgba(73,45,14,.18);text-align:center}.reserve-kicker{margin:0 0 8px;color:#6f4b1c;text-transform:uppercase;letter-spacing:.12em;font-size:13px}.reserve-card h2{margin:0;color:#9b6418;font-family:"Cormorant Garamond",serif;font-size:clamp(42px,7vw,62px);line-height:1;font-weight:600}.reserve-note{margin:12px auto 25px;max-width:500px;font-size:15px;line-height:1.6}.rsvp-form{display:grid;gap:15px;text-align:left}.field{display:grid;gap:7px}.field label{color:#6f4b1c;font-weight:700}.field input,.field select,.field textarea{width:100%;border:1px solid #d8b77e;background:rgba(255,255,255,.86);border-radius:13px;padding:14px 15px;color:#35271c;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a66b18;box-shadow:0 0 0 4px rgba(166,107,24,.12)}.submit-rsvp{justify-self:center;min-width:min(100%,320px);margin-top:10px;border:0;border-radius:999px;padding:14px 24px;color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(#d9a851,#9e661b);box-shadow:0 8px 18px rgba(116,72,15,.3);cursor:pointer}.submit-rsvp:disabled{opacity:.65;cursor:wait}.form-status{text-align:center;min-height:1.4em;margin:5px 0 0;color:#74501d}.form-status.success{color:#2f6f3e}.form-status.error{color:#9a2d25}
 
-/* A matching ivory flap is layered only during the opening animation. */
-.flap{position:absolute;left:15.2%;top:47.2%;width:69.6%;height:21.5%;z-index:6;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(145deg,#fffaf1 0%,#f5e7d2 72%,#ead4b4 100%);border-top:1px solid rgba(255,255,255,.72);filter:drop-shadow(0 8px 7px rgba(93,60,26,.16));opacity:0;backface-visibility:hidden;pointer-events:none}
+@keyframes coverArrive{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:none}}@keyframes sealBreak{0%{transform:scale(1);opacity:1}55%{transform:scale(.82)}100%{transform:scale(.62);opacity:0}}@keyframes flapOpen{0%{transform:rotateX(0deg);opacity:1}55%{transform:rotateX(-112deg);opacity:1}100%{transform:rotateX(-176deg);opacity:.15}}@keyframes coverDepart{to{opacity:0;transform:translateY(-5%) scale(1.01)}}@keyframes veilIn{to{opacity:1}}@keyframes invitationReveal{from{opacity:0;transform:translateY(28px) scale(.992)}to{opacity:1;transform:none}}
 
-.cover-screen.opening .flap{opacity:1;animation:flapOpen 1.15s cubic-bezier(.2,.72,.18,1) forwards}.cover-screen.opening .seal-button{animation:sealBreak .48s ease forwards}.cover-screen.opening .cover-stage{animation:coverDepart .9s 1.08s cubic-bezier(.45,0,.2,1) forwards}.cover-screen.cover-finished{visibility:hidden;pointer-events:none;opacity:0}.cover-screen.opening::after{content:"";position:fixed;inset:0;z-index:20;background:#f5e8d4;opacity:0;pointer-events:none;animation:veilIn .5s 1.12s ease forwards}.cover-screen{transition:opacity .35s ease,visibility 0s linear .35s}
-
-.invitation-screen{display:grid;min-height:100svh;align-content:start;justify-items:center;padding:0 0 42px;background:#f1e3cc}.invitation-screen.visible{opacity:0;transform:translateY(20px);pointer-events:none}.invitation-open .invitation-screen.visible{opacity:1;transform:none;pointer-events:auto;animation:invitationReveal .82s ease both}.invitation-wrap{position:relative;width:min(100%,863px);filter:drop-shadow(0 22px 38px rgba(65,39,13,.24))}.invitation-art{display:block;width:100%;height:auto}.rsvp-hotspot{position:absolute;left:34.7%;top:75.9%;width:30.8%;height:3.25%;border:0;border-radius:999px;background:transparent;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}.rsvp-hotspot:hover,.rsvp-hotspot:focus-visible{transform:scale(1.018);box-shadow:0 0 0 3px rgba(255,255,255,.62),0 0 22px rgba(176,111,20,.48);outline:none}.close-invitation{margin-top:22px;padding:11px 24px;border:1px solid #b6843c;border-radius:999px;background:#fff8ed;color:#80561f;cursor:pointer;box-shadow:0 8px 18px rgba(91,57,18,.12)}
-
-.rsvp-dialog{width:min(92vw,560px);border:1px solid rgba(167,108,25,.45);border-radius:28px;padding:30px;background:linear-gradient(145deg,#fffdf8,#f6e8d5);color:var(--ink);box-shadow:0 25px 90px rgba(54,31,9,.42)}.rsvp-dialog::backdrop{background:rgba(39,25,14,.6);backdrop-filter:blur(6px)}.dialog-close{position:absolute;right:15px;top:9px;border:0;background:transparent;color:#8b5d20;font-size:34px;cursor:pointer}.dialog-heading{text-align:center;border-bottom:1px solid rgba(167,108,25,.3);padding-bottom:18px;margin-bottom:20px}.dialog-heading p{margin:0 0 7px;text-transform:uppercase;letter-spacing:.08em;font-size:13px}.dialog-heading h2{margin:0;color:#9b6418;font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:600}.dialog-heading span{font-size:14px}.rsvp-dialog form{display:grid;gap:9px}.rsvp-dialog label{margin-top:7px;color:#6f4b1c;font-weight:700}.rsvp-dialog label span{font-weight:400}.rsvp-dialog input,.rsvp-dialog select,.rsvp-dialog textarea{width:100%;border:1px solid #d8b77e;background:rgba(255,255,255,.78);border-radius:12px;padding:13px;color:#35271c;outline:none}.rsvp-dialog input:focus,.rsvp-dialog select:focus,.rsvp-dialog textarea:focus{border-color:#a66b18;box-shadow:0 0 0 3px rgba(166,107,24,.12)}.submit-rsvp{margin-top:10px;border:0;border-radius:999px;padding:14px 24px;color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(#d9a851,#9e661b);box-shadow:0 8px 18px rgba(116,72,15,.3);cursor:pointer}.submit-rsvp:disabled{opacity:.65;cursor:wait}.form-status{text-align:center;min-height:1.4em;margin:5px 0 0;color:#74501d}
-
-@keyframes coverArrive{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}@keyframes sealBreak{0%{transform:scale(1);opacity:1}55%{transform:scale(.82)}100%{transform:scale(.62);opacity:0}}@keyframes flapOpen{0%{transform:rotateX(0deg);opacity:1}55%{transform:rotateX(-112deg);opacity:1}100%{transform:rotateX(-176deg);opacity:.15}}@keyframes coverDepart{to{opacity:0;transform:translateY(-8%) scale(1.018)}}@keyframes veilIn{to{opacity:1}}@keyframes invitationReveal{from{opacity:0;transform:translateY(28px) scale(.992)}to{opacity:1;transform:none}}
-
-@media(max-width:600px){.cover-screen{align-items:start}.cover-stage{width:100vw}.cover-art{max-height:none}.seal-button{left:44.8%;top:68%;width:10.5%}.flap{left:15.2%;top:47.2%;width:69.6%;height:21.5%}.invitation-wrap{width:100%}.close-invitation{margin-top:16px}.rsvp-dialog{padding:27px 20px 22px;border-radius:22px}.dialog-heading h2{font-size:34px}}
+@media(max-width:600px){
+  .cover-screen{background:#f6ead6;padding:0}
+  .cover-stage{width:100vw;height:auto;max-height:100svh;aspect-ratio:2048/1448;margin:auto}
+  .cover-art{width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
+  .invitation-wrap{width:100%;max-width:863px;margin:0 auto;left:auto;transform:none}
+  .reserve-section{width:100%;padding:0 14px}.reserve-card{padding:30px 18px;border-radius:22px}.reserve-note{font-size:14px}.close-invitation{margin-top:16px}
+}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
-
-/* Visible reservation section */
-.invitation-screen{opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
-.invitation-open .invitation-screen{opacity:1;transform:none;pointer-events:auto;animation:invitationReveal .82s ease both}
-.reserve-section{width:min(94%,760px);margin:28px auto 4px;padding:0 12px;scroll-margin-top:24px}
-.reserve-card{position:relative;overflow:hidden;padding:38px clamp(20px,5vw,54px);border:1px solid rgba(177,124,47,.48);border-radius:28px;background:linear-gradient(145deg,rgba(255,253,248,.97),rgba(246,232,213,.97));box-shadow:0 20px 48px rgba(73,45,14,.18);text-align:center}
-.reserve-card::before,.reserve-card::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(222,185,124,.08) 60%,transparent 72%);pointer-events:none}.reserve-card::before{left:-75px;top:-80px}.reserve-card::after{right:-75px;bottom:-85px}
-.reserve-kicker{margin:0 0 8px;color:#6f4b1c;text-transform:uppercase;letter-spacing:.12em;font-size:13px}
-.reserve-card h2{margin:0;color:#9b6418;font-family:"Cormorant Garamond",serif;font-size:clamp(42px,7vw,62px);line-height:1;font-weight:600}
-.reserve-note{margin:12px auto 25px;max-width:500px;font-size:15px;line-height:1.6}
-.rsvp-form{position:relative;z-index:1;display:grid;gap:15px;text-align:left}
-.field{display:grid;gap:7px}.field label{color:#6f4b1c;font-weight:700}.field label span{font-weight:400}
-.field input,.field select,.field textarea{width:100%;border:1px solid #d8b77e;background:rgba(255,255,255,.86);border-radius:13px;padding:14px 15px;color:#35271c;outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#a66b18;box-shadow:0 0 0 4px rgba(166,107,24,.12)}
-.rsvp-form .submit-rsvp{justify-self:center;min-width:min(100%,320px);font-size:16px}
-.form-status.success{color:#2f6f3e}.form-status.error{color:#9a2d25}
-@media(max-width:600px){.reserve-section{width:100%;padding:0 14px}.reserve-card{padding:30px 18px;border-radius:22px}.reserve-note{font-size:14px}}
-
-/* July 2026 mobile layout correction: the cover now fills the entire phone screen
-   and the invitation artwork is enlarged for easier reading. */
-@media (max-width: 600px) {
-  .cover-screen {
-    align-items: stretch;
-    justify-items: stretch;
-    min-height: 100svh;
-    height: 100svh;
-    background: #efe1ca;
-  }
-
-  .cover-stage {
-    width: 100vw;
-    height: 100svh;
-    overflow: hidden;
-  }
-
-  .cover-art {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    object-fit: fill;
-    filter: none;
-  }
-
-  /* Coordinates stay aligned with the full-screen cover artwork. */
-  .seal-button {
-    left: 44.7%;
-    top: 67.7%;
-    width: 10.8%;
-  }
-
-  .flap {
-    left: 15.1%;
-    top: 47.1%;
-    width: 69.8%;
-    height: 21.7%;
-  }
-
-  .invitation-screen {
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  /* Enlarge the actual invitation content while cropping only some outer flowers. */
-  .invitation-wrap {
-    width: 116vw;
-    max-width: none;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .invitation-art {
-    width: 100%;
-    max-width: none;
-  }
-
-  .rsvp-hotspot {
-    left: 34.7%;
-    top: 75.9%;
-    width: 30.8%;
-    height: 3.25%;
-  }
-}
-
-@media (max-width: 390px) {
-  .invitation-wrap {
-    width: 120vw;
-  }
-}
-
-/* Final phone correction: preserve the cover artwork's natural proportions,
-   center it inside a full-screen floral background, and keep the opened
-   invitation evenly centered with only a gentle zoom. */
-@media (max-width: 600px) {
-  .cover-screen {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    min-height: 100svh;
-    height: 100svh;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    background-image:
-      linear-gradient(rgba(245,232,211,.06), rgba(245,232,211,.06)),
-      url("background.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .cover-screen::before {
-    background: radial-gradient(circle at center,
-      rgba(255,252,244,.04),
-      rgba(228,204,169,.08));
-  }
-
-  .cover-stage {
-    position: relative;
-    width: 100vw;
-    height: auto;
-    aspect-ratio: 863 / 650;
-    overflow: visible;
-    margin: 0;
-  }
-
-  .cover-art {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
-    object-position: center;
-    filter: drop-shadow(0 18px 30px rgba(70,44,17,.20));
-  }
-
-  /* Restore the hotspot coordinates for the undistorted 863 × 650 artwork. */
-  .seal-button {
-    left: 45.1%;
-    top: 68.2%;
-    width: 9.8%;
-  }
-
-  .flap {
-    left: 15.2%;
-    top: 47.2%;
-    width: 69.6%;
-    height: 21.5%;
-  }
-
-  .invitation-screen {
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  /* A small, symmetrical zoom: 4vw is cropped from each outer flower edge. */
-  .invitation-wrap {
-    position: relative;
-    left: auto;
-    width: 108vw;
-    max-width: none;
-    margin-left: -4vw;
-    margin-right: -4vw;
-    transform: none;
-  }
-
-  .invitation-art {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: none;
-  }
-}
-
-@media (max-width: 390px) {
-  .invitation-wrap {
-    width: 106vw;
-    margin-left: -3vw;
-    margin-right: -3vw;
-  }
-}
