@@ -1,18 +1,12 @@
 # Kanchan & Saurav Engagement Invitation
 
-Netlify- and GitHub-ready engagement invitation website.
+This version includes the final mobile alignment correction:
 
-## Included
-- Full-screen pearl and flower cover
-- One animated ivory envelope
-- One red K&S wax seal
-- Smooth opening transition
-- Full invitation artwork
-- A visible RSVP reservation section below the invitation
-- Google Sheets and email notification integration
+- The envelope artwork keeps its original proportions instead of stretching vertically.
+- The full phone screen remains covered by the pearl-and-flower background.
+- The envelope is centered vertically so there is no large plain area underneath it.
+- The opened invitation is centered with a gentle, symmetrical zoom.
+- Names, date, time, address, photo, gift note, RSVP button, and hashtag remain visible.
+- The visible RSVP form remains included below the invitation.
 
-## Publish
-Upload every file and the `assets` folder to the root of a GitHub repository, then connect that repository to Netlify.
-
-## RSVP
-Follow `SETUP-GOOGLE-SHEETS.md`, deploy the Apps Script as a Web App, then paste its URL into `GOOGLE_SCRIPT_URL` in `script.js`.
+Upload every file in this folder directly to the root of the GitHub repository. In Netlify, deploy the site without cache after uploading.
