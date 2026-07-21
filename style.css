@@ -36,3 +36,74 @@
 .rsvp-form .submit-rsvp{justify-self:center;min-width:min(100%,320px);font-size:16px}
 .form-status.success{color:#2f6f3e}.form-status.error{color:#9a2d25}
 @media(max-width:600px){.reserve-section{width:100%;padding:0 14px}.reserve-card{padding:30px 18px;border-radius:22px}.reserve-note{font-size:14px}}
+
+/* July 2026 mobile layout correction: the cover now fills the entire phone screen
+   and the invitation artwork is enlarged for easier reading. */
+@media (max-width: 600px) {
+  .cover-screen {
+    align-items: stretch;
+    justify-items: stretch;
+    min-height: 100svh;
+    height: 100svh;
+    background: #efe1ca;
+  }
+
+  .cover-stage {
+    width: 100vw;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .cover-art {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: fill;
+    filter: none;
+  }
+
+  /* Coordinates stay aligned with the full-screen cover artwork. */
+  .seal-button {
+    left: 44.7%;
+    top: 67.7%;
+    width: 10.8%;
+  }
+
+  .flap {
+    left: 15.1%;
+    top: 47.1%;
+    width: 69.8%;
+    height: 21.7%;
+  }
+
+  .invitation-screen {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Enlarge the actual invitation content while cropping only some outer flowers. */
+  .invitation-wrap {
+    width: 116vw;
+    max-width: none;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .invitation-art {
+    width: 100%;
+    max-width: none;
+  }
+
+  .rsvp-hotspot {
+    left: 34.7%;
+    top: 75.9%;
+    width: 30.8%;
+    height: 3.25%;
+  }
+}
+
+@media (max-width: 390px) {
+  .invitation-wrap {
+    width: 120vw;
+  }
+}
