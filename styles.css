@@ -84,7 +84,7 @@ img { display: block; max-width: 100%; }
 .invitation-page {
   min-height: 100vh;
   padding: clamp(160px, 17vw, 245px) 0 clamp(80px, 8vw, 140px);
-  background-image: url("assets/invitation-frame.png");
+  background-image: url("invitation-frame.png");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100% 100%;
