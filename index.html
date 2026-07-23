@@ -3,70 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f4e7d2" />
-  <meta name="description" content="Kanchan and Saurav's engagement invitation — November 20, 2026." />
-  <title>Kanchan &amp; Saurav — Engagement Invitation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="invitation-cover.png" />
-  <link rel="preload" as="image" href="invitation-only.png" />
-  <link rel="stylesheet" href="style.css?v=full-front-page-fixed-2" />
+  <meta name="theme-color" content="#f4e5ce" />
+  <title>Kanchan & Saurav — Engagement Invitation</title>
+  <meta name="description" content="You are warmly invited to Kanchan and Saurav's engagement celebration on November 20, 2026." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main>
-    <section class="cover-screen" id="coverScreen" aria-label="Engagement invitation cover">
-      <div class="cover-stage" id="coverStage">
-        <img class="cover-art" src="invitation-cover.png" alt="Pearl and flower engagement invitation cover with an ivory envelope and red K and S wax seal" />
-        <div class="flap" aria-hidden="true"></div>
-        <button class="seal-button" id="sealButton" type="button" aria-label="Tap the K and S wax seal to open the invitation">
-          <span class="sr-only">Open invitation</span>
-        </button>
-      </div>
+    <section id="cover" class="cover-screen" aria-label="Open engagement invitation">
+      <img class="cover-art" src="assets/invitation-cover.png" alt="Pearl and floral engagement invitation envelope" />
+      <button id="sealButton" class="seal-button" type="button" aria-label="Tap the wax seal to open the invitation">
+        <span class="sr-only">Tap the wax seal to open the invitation</span>
+      </button>
+      <div class="tap-hint" aria-hidden="true">Tap the wax seal to open the invitation</div>
     </section>
 
-    <section class="invitation-screen" id="invitationScreen" aria-hidden="true">
-      <div class="invitation-wrap">
-        <img class="invitation-art" src="invitation-only.png" alt="Kanchan and Saurav engagement invitation with event details, photo, gift note, and hashtag" />
-        <a class="rsvp-hotspot" href="#reserve" aria-label="Go to the RSVP section"></a>
-      </div>
+    <section id="invitation" class="invitation-page" aria-hidden="true">
+      <div class="invitation-content">
+        <header class="intro-block">
+          <p class="eyebrow">A Celebration of Love</p>
+          <p class="small-caps">Together with Our Families,</p>
+          <h1>Kanchan <span>&amp;</span> Saurav</h1>
+          <p class="promise">Two Hearts, One Promise</p>
+          <div class="ornament">◆</div>
+        </header>
 
-      <section class="reserve-section" id="reserve" aria-labelledby="reserveTitle">
-        <div class="reserve-card">
-          <p class="reserve-kicker">Kindly RSVP by October 20th, 2026</p>
-          <h2 id="reserveTitle">Celebrate With Us</h2>
-          <p class="reserve-note">Please submit one response per invited guest. No plus-ones, please.</p>
+        <section class="details-section" aria-labelledby="event-details-title">
+          <h2 id="event-details-title">Event Details</h2>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <div class="icon" aria-hidden="true">▣</div>
+              <strong>Friday</strong>
+              <span>November 20th, 2026</span>
+            </article>
+            <article class="detail-card">
+              <div class="icon" aria-hidden="true">◷</div>
+              <strong>From 3:00 PM</strong>
+              <span>Onwards</span>
+            </article>
+            <article class="detail-card">
+              <div class="icon" aria-hidden="true">⌖</div>
+              <strong>20670 Fernbank Ct</strong>
+              <span>Potomac Falls, VA 20265</span>
+            </article>
+          </div>
+          <p class="arrival-note">Please arrive on time for the ceremony; you won’t want to miss this special moment.</p>
+        </section>
 
-          <form id="rsvpForm" class="rsvp-form">
-            <div class="field full-width">
-              <label for="name">Full Name</label>
-              <input id="name" type="text" name="name" autocomplete="name" required placeholder="Enter your full name" />
-            </div>
+        <section class="dress-section">
+          <h2>Dress Code</h2>
+          <p>Nepali / Indian Traditional Attire</p>
+        </section>
 
-            <div class="field full-width">
-              <label for="attendance">Will you be attending?</label>
-              <select id="attendance" name="attendance" required>
-                <option value="" selected disabled>Select your response</option>
-                <option value="Yes — attending">Yes, I will be attending</option>
-                <option value="No — unable to attend">No, I am unable to attend</option>
-              </select>
-            </div>
+        <section class="guest-note">
+          <p>This invitation is reserved for the named guest only. No plus-ones, please.</p>
+        </section>
 
-            <div class="field full-width">
-              <label for="message">Message <span>(optional)</span></label>
-              <textarea id="message" name="message" rows="4" placeholder="Leave a message for Kanchan & Saurav"></textarea>
-            </div>
+        <section class="photo-section" aria-label="Kanchan and Saurav together">
+          <figure>
+            <img src="assets/engagement-photo.jpeg" alt="Kanchan and Saurav together" />
+            <figcaption>Kanchan and Saurav together</figcaption>
+          </figure>
+        </section>
 
-            <button class="submit-rsvp" type="submit">Submit RSVP</button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <section class="rsvp-section" aria-labelledby="rsvp-title">
+          <p class="rsvp-kicker">Kindly RSVP by October 20th, 2026</p>
+          <h2 id="rsvp-title">Celebrate With Us</h2>
+          <p>Please let us know whether you will be joining our celebration.</p>
+
+          <form name="engagement-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+            <input type="hidden" name="form-name" value="engagement-rsvp" />
+            <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
+
+            <label for="full-name">Full Name</label>
+            <input id="full-name" name="full-name" type="text" placeholder="Your full name" autocomplete="name" required />
+
+            <label for="attendance">Will you be attending?</label>
+            <select id="attendance" name="attendance" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="Joyfully Accepts">Joyfully Accepts</option>
+              <option value="Regretfully Declines">Regretfully Declines</option>
+            </select>
+
+            <label for="message">Message (optional)</label>
+            <textarea id="message" name="message" rows="4" placeholder="Share a note for Kanchan & Saurav"></textarea>
+
+            <button class="submit-button" type="submit">Celebrate With Us</button>
           </form>
-        </div>
-      </section>
+        </section>
 
-      <button class="close-invitation" id="closeInvitation" type="button">Return to Envelope</button>
+        <section class="love-note">
+          <h2>A Note With Love</h2>
+          <p>Your presence at our engagement is the most meaningful gift of all. If you would like to celebrate with a gift, we would be grateful for a contribution toward our future together in place of traditional boxed gifts. Above all, we are thankful for your love, blessings, and the joy of sharing this special occasion with you.</p>
+          <p class="no-gifts">No boxed gifts and no flowers, please!</p>
+        </section>
+
+        <footer>
+          <p>#SauraveeFoundHisKanchii</p>
+        </footer>
+      </div>
     </section>
   </main>
-
-  <script src="script.js?v=full-front-page-fixed-2"></script>
+  <script src="script.js"></script>
 </body>
 </html>
