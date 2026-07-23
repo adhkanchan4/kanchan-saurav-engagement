@@ -1,66 +1,11 @@
-GOOGLE SHEETS HEADCOUNT + EMAIL NOTIFICATIONS
+GOOGLE SHEETS RSVP SETUP
 
-1. Create a blank Google Sheet named:
-   Kanchan & Saurav RSVPs
-
-2. In the Google Sheet, click:
-   Extensions → Apps Script
-
-3. Delete the code already shown in Apps Script.
-
-4. Open the downloaded file:
-   google-apps-script.gs
-
-5. Copy all the code from that file and paste it into Apps Script.
-
-6. Click Save.
-
-7. At the top, select the function:
-   setupGuestList
-
-8. Click Run and approve the requested Google permissions.
-
-9. Click:
-   Deploy → New deployment
-
-10. Choose:
-    Type: Web app
-    Execute as: Me
-    Who has access: Anyone
-
-11. Click Deploy.
-
-12. Copy the Web App URL.
-
-13. Open index.html in a plain-text editor.
-
-14. Find:
-    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-
-15. Replace only the placeholder with your Web App URL.
-
-16. Save index.html and upload all six files to GitHub.
-
-WHAT YOU WILL RECEIVE
-
-- Every RSVP is emailed to:
-  adhkanchan4@gmail.com
-
-- RSVP Responses stores every submission.
-
-- Guest List shows:
-  Accepted
-  Declined
-  Pending
-
-- Headcount Summary automatically counts each category.
-
-- Netlify Forms keeps a backup copy of every RSVP.
-
-IMPORTANT
-
-Before sharing the invitation:
-
-1. Open the Guest List tab.
-2. Add each invited guest's exact name in Column A.
-3. Put Pending in Column B for every invited guest.
+1. Create a Google Sheet with columns: Timestamp, Name, Attendance, Message.
+2. Open Extensions > Apps Script.
+3. Paste the contents of google-apps-script.js and save.
+4. Deploy > New deployment > Web app.
+5. Execute as: Me. Access: Anyone.
+6. Copy the Web App URL.
+7. Open script.js and paste it between the quotation marks in:
+   const GOOGLE_SCRIPT_URL="";
+8. Upload the updated folder to GitHub/Netlify.

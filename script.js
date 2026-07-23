@@ -1,26 +1,5 @@
-const cover = document.getElementById('cover');
-const invitation = document.getElementById('invitation');
-const sealButton = document.getElementById('sealButton');
-let opened = false;
-
-function openInvitation() {
-  if (opened) return;
-  opened = true;
-  sealButton.disabled = true;
-  cover.classList.add('opening');
-
-  window.setTimeout(() => {
-    invitation.classList.add('visible');
-    invitation.setAttribute('aria-hidden', 'false');
-    cover.classList.add('opened');
-    document.body.style.overflow = 'auto';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 550);
-}
-
-sealButton.addEventListener('click', openInvitation, { once: true });
-sealButton.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter' || event.key === ' ') openInvitation();
-});
-
-document.body.style.overflow = 'hidden';
+const GOOGLE_SCRIPT_URL="";
+const openingScreen=document.getElementById("openingScreen"),invitationPages=document.getElementById("invitationPages"),waxSeal=document.getElementById("waxSeal"),tapCopy=document.getElementById("tapCopy"),rsvpForm=document.getElementById("rsvpForm"),formStatus=document.getElementById("formStatus");let opened=false;
+function openInvitation(){if(opened)return;opened=true;waxSeal.disabled=true;tapCopy.disabled=true;openingScreen.classList.add("opening");setTimeout(()=>{invitationPages.classList.add("visible");invitationPages.setAttribute("aria-hidden","false");document.getElementById("pageOne").scrollIntoView({behavior:"smooth",block:"start"})},680)}
+waxSeal.addEventListener("click",openInvitation);tapCopy.addEventListener("click",openInvitation);
+rsvpForm.addEventListener("submit",async e=>{e.preventDefault();const button=rsvpForm.querySelector("button[type='submit']");button.disabled=true;formStatus.textContent="Sending your RSVP…";const formData=new FormData(rsvpForm),encoded=new URLSearchParams(formData).toString();try{const requests=[fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:encoded})];if(GOOGLE_SCRIPT_URL)requests.push(fetch(GOOGLE_SCRIPT_URL,{method:"POST",body:formData,mode:"no-cors"}));await Promise.all(requests);rsvpForm.reset();formStatus.textContent="Thank you! Your RSVP has been received."}catch(error){console.error(error);formStatus.textContent="We couldn’t send your RSVP. Please try again."}finally{button.disabled=false}});
